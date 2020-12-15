@@ -49,9 +49,13 @@ git clone https://github.com/rufengsuixing/luci-app-onliner.git package/luci-app
 
 # Add OpenAppFilter
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
+
 # svn co https://github.com/siropboy/luci-app-vssr-plus/trunk/luci-app-vssr-plus package/new/luci-app-vssr-plus
+
 git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
+
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/diy/luci-app-vssr
+
 ./scripts/feeds update -i
 
 # Modify default IP
@@ -66,6 +70,9 @@ sed -i 's|https://github.com/sirpdboy/openwrt/actions|https://github.com/xylz092
 sed -i 's|https://github.com/sirpdboy/openwrt18.06/issues|https://github.com/xylz0928/Openwrt-Make-x86_7621/issues|g' ./package/diy/autocore/files/x86/index.htm
 sed -i 's|固件TG聊天群|作者网站首页|g' ./package/diy/autocore/files/x86/index.htm
 sed -i 's|https://t.me/joinchat/AAAAAEpRF88NfOK5vBXGBQ|https://7ze.top|g' ./package/diy/autocore/files/x86/index.htm
+
+
+chmod -R 755 .
 
 # Fix Multi-use on one physical port 
 # 修复 5.4.68-5.4.69内核 于 MIPS 架构 单线复用BUG
