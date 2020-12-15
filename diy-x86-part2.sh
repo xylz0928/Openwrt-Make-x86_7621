@@ -61,8 +61,11 @@ svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/diy/luci-app-v
 sed -i 's/bootstrap/argon_new/g' feeds/luci/collections/luci/Makefile
 
 
-
-
+# Modify index 
+sed -i 's|https://github.com/sirpdboy/openwrt/actions|https://github.com/xylz0928/Openwrt-Make-x86_7621/actions|g' ./package/diy/autocore/files/x86/index.htm
+sed -i 's|https://github.com/sirpdboy/openwrt18.06/issues|https://github.com/xylz0928/Openwrt-Make-x86_7621/issues|g' ./package/diy/autocore/files/x86/index.htm
+sed -i 's|固件TG聊天群|作者网站首页|g' ./package/diy/autocore/files/x86/index.htm
+sed -i 's|https://t.me/joinchat/AAAAAEpRF88NfOK5vBXGBQ|https://7ze.top|g' ./package/diy/autocore/files/x86/index.htm
 
 # Fix Multi-use on one physical port 
 # 修复 5.4.68-5.4.69内核 于 MIPS 架构 单线复用BUG
