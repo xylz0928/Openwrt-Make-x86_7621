@@ -10,9 +10,6 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
-
-
-#!/bin/bash
 #=================================================
 # Description: Build OpenWrt using GitHub Actions
 rm -rf ./package/lean/luci-theme-argon
