@@ -43,8 +43,12 @@ git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 git clone https://github.com/zzsj0928/luci-app-serverchand package/luci-app-serverchand
 
 # Add Hello World
-svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/diy/luci-app-vssr
+# svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/diy/luci-app-vssr
 # svn co https://github.com/siropboy/luci-app-vssr-plus/trunk/luci-app-vssr-plus package/new/luci-app-vssr-plus
+
+git clone https://github.com/jerrykuku/lua-maxminddb.git  package/lean/lua-maxminddb
+#git lua-maxminddb 依赖
+git clone https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
 
 # Add Passwall
 git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
