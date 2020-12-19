@@ -29,6 +29,8 @@ git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 # Add ServerChan-DINGDING
 git clone https://github.com/zzsj0928/luci-app-serverchand package/luci-app-serverchand
 
+# Add ADGuardHome
+git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
 
 # Fix Multi-use on one physical port 
 # 修复 5.4.68-5.4.69内核 于 MIPS 架构 单线复用BUG
