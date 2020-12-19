@@ -32,6 +32,9 @@ git clone https://github.com/zzsj0928/luci-app-serverchand package/luci-app-serv
 # Add ADGuardHome
 git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
 
+# Add KoolProxyR Plus+
+git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
+
 # Fix Multi-use on one physical port 
 # 修复 5.4.68-5.4.69内核 于 MIPS 架构 单线复用BUG
 # 取自 @AmadeusGhost， 原更新内容为 generic: limit commit "ramips/mediatek: improve GRO performance, fix PPE packet parsing" to mediatek target only
