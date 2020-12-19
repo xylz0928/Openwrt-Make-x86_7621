@@ -79,7 +79,7 @@ svn co https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk/ ./package/diy/
 #  git clone https://github.com/openwrt-dev/po2lmo.git package/diy/po2lmo
 #  cd package/diy/po2lmo
 #  make && sudo make install
-./scripts/feeds update -i
+
 
 # Add ServerChan
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/diy/luci-app-serverchan
