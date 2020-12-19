@@ -36,8 +36,8 @@ svn co https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy ./fe
 #sed -i 's/or "1"%>/or "1"%> ( <%=luci.sys.exec("expr `cat \/sys\/class\/thermal\/thermal_zone0\/temp` \/ 1000") or "?"%> \&#8451; ) /g' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
 
 #rm -rf ./package/diy/autocore
-rm -rf ./package/diy/netdata
-rm -rf ./package/diy/mwan3
+#rm -rf ./package/diy/netdata
+#rm -rf ./package/diy/mwan3
 #rm -rf ./package/diy/default-settings
 rm -rf ./package/lean/autocore
 rm -rf ./package/lean/default-settings
