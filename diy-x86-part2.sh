@@ -24,7 +24,7 @@ echo "DISTRIB_REVISION='S$(TZ=UTC-8 date +%Y.%m.%d) xylz0928 Products'" > ./pack
 #sed -i 's|固件TG聊天群|作者网站首页|g' ./package/diy/autocore/files/x86/index.htm
 #sed -i 's|https://t.me/joinchat/AAAAAEpRF88NfOK5vBXGBQ|https://7ze.top|g' ./package/diy/autocore/files/x86/index.htm
 
-
+# Change default theme
 sed -i 's/bootstrap/argon/g' feeds/luci/collections/luci/Makefile
 
 # Add ServerChan
