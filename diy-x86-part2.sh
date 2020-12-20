@@ -12,8 +12,8 @@
 
 
 #修复核心及添加温度显示
-#sed -i 's|pcdata(boardinfo.system or "?")|luci.sys.exec("uname -m") or "?"|g' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
-#sed -i 's/or "1"%>/or "1"%> ( <%=luci.sys.exec("expr `cat \/sys\/class\/thermal\/thermal_zone0\/temp` \/ 1000") or "?"%> \&#8451; ) /g' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
+sed -i 's|pcdata(boardinfo.system or "?")|luci.sys.exec("uname -m") or "?"|g' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
+sed -i 's/or "1"%>/or "1"%> ( <%=luci.sys.exec("expr `cat \/sys\/class\/thermal\/thermal_zone0\/temp` \/ 1000") or "?"%> \&#8451; ) /g' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
 
 sed -i 's/invalid/# invalid/g' package/network/services/samba36/files/smb.conf.template
 echo "DISTRIB_REVISION='S$(TZ=UTC-8 date +%Y.%m.%d) xylz0928 Products'" > ./package/base-files/files/etc/openwrt_release1
@@ -62,6 +62,12 @@ git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app
 # Add KoolProxyR Plus+
 git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
 
+# Add luci-app-socat
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./package/luci-app-socat
+
+# Add SmartDNS
+# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./package/luci-app-smartdns
+# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./package/smartdns
 
 # Add Poweroff
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
