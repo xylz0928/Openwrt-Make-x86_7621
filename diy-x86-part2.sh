@@ -66,6 +66,7 @@ git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koo
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./package/luci-app-socat
 
 # Add SmartDNS
+# rm -rf ./feeds/packages/net/smartdns
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./package/luci-app-smartdns
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./package/smartdns
 
