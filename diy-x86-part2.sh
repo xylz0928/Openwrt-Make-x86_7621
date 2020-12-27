@@ -57,10 +57,12 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
 git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
 
 # Add ADGuardHome
-git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
+# git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./package/luci-app-adguardhome
 
 # Add KoolProxyR Plus+
-git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
+# git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-koolproxyR ./package/luci-app-koolproxyR
 
 # Add luci-app-socat
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./package/luci-app-socat
