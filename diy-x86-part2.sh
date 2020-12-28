@@ -74,6 +74,8 @@ chmod -R 755 ./package/luci-app-socat/*
 # rm -rf ./feeds/packages/net/smartdns
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./package/luci-app-smartdns
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./package/smartdns
+# chmod -R 755 ./package/smartdns
+# chmod -R 755 ./package/luci-app-smartdns
 
 # Add Poweroff
 curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
