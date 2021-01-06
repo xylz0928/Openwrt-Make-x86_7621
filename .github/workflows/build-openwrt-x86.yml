@@ -165,27 +165,25 @@ jobs:
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
         echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
-
+        
     - name: Upload firmware to my NAS
       id: zz-nas
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_ZZNAS == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
-        ftp -i -n <<FTPIT
-        open $ftp_ip
-        user $ftp_username $ftp_psw
-        bin
-        passive
-        hash
-        cd $TargetPath
-        mkdir "$(date +"%Y-%m-%d")"
-        cd "$(date +"%Y-%m-%d")"
-        put $upload_file_1 ./$upload_file_1
-        put $upload_file_2 ./$upload_file_2
-        put $upload_file_3 ./$upload_file_3
-        quit
-        FTPIT
-        echo "Uploaded to ZZ-NAS"
+        wget -O ftpput.sh git.io/FTPPut && chmod +x ./ftpput.sh
+        bash ftpput.sh $ftp_ip $ftp_username $ftp_psw $TargetPath $upload_file_1 ./ > ftp.log 2>&1 &
+        sleep 120
+        echo "$upload_file_1 Sent to ZZ-NAS"
+        bash ftpput.sh $ftp_ip $ftp_username $ftp_psw $TargetPath $upload_file_2 ./ > ftp.log 2>&1 &
+        sleep 120
+        echo "$upload_file_2 Sent to ZZ-NAS"
+        bash ftpput.sh $ftp_ip $ftp_username $ftp_psw $TargetPath $upload_file_3 ./ > ftp.log 2>&1 &
+        sleep 20
+        echo "$upload_file_3 Sent to ZZ-NAS"
+        sleep 960
+        killall -9 ftp
+        echo "All Released Files Uploaded to ZZ-NAS"
 
     - name: Generate release tag
       id: tag
