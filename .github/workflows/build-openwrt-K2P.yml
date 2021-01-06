@@ -30,10 +30,18 @@ env:
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
-  UPLOAD_COWTRANSFER: true
+  UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: true
   UPLOAD_RELEASE: false
   TZ: Asia/Shanghai
+  UPLOAD_ZZNAS: true
+  ftp_username: ${{ secrets.FTP_USERNAME }}
+  ftp_psw: ${{ secrets.FTP_PSW }}
+  ftp_ip: ${{ secrets.FTP_IP }}
+  TargetPath: /OpenwrtImgs/mt7621/K2P/
+  upload_file_1: openwrt-ramips-mt7621-phicomm_k2p-initramfs-kernel.bin
+  upload_file_2: openwrt-ramips-mt7621-phicomm_k2p-squashfs-sysupgrade.bin
+  upload_file_3: sha256sums
 
 jobs:
   build:
@@ -155,6 +163,27 @@ jobs:
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
         echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
+
+    - name: Upload firmware to my NAS
+      id: zz-nas
+      if: steps.organize.outputs.status == 'success' && env.UPLOAD_ZZNAS == 'true' && !cancelled()
+      run: |
+        cd openwrt/bin/targets/*/*
+        ftp -i -n <<FTPIT
+        open $ftp_ip
+        user $ftp_username $ftp_psw
+        bin
+        passive
+        hash
+        cd $TargetPath
+        mkdir "$(date +"%Y-%m-%d")"
+        cd "$(date +"%Y-%m-%d")"
+        put $upload_file_1 ./$upload_file_1
+        put $upload_file_2 ./$upload_file_2
+        put $upload_file_3 ./$upload_file_3
+        quit
+        FTPIT
+        echo "Uploaded to ZZ-NAS"
 
     - name: Generate release tag
       id: tag
