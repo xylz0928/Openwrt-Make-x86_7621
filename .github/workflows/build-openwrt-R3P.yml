@@ -185,7 +185,7 @@ jobs:
         put $upload_file_4 ./$upload_file_4
         quit
         FTPIT
-        echo "Uploaded to ZZ-NAS"
+        echo "::warning All imgs uploaded to ZZ-NAS"
 
     - name: Generate release tag
       id: tag
