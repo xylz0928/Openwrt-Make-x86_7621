@@ -178,8 +178,11 @@ jobs:
         sleep 120
         echo "$upload_file_2 Sent to ZZ-NAS"
         bash ftpput.sh $ftp_ip $ftp_username $ftp_psw $TargetPath $upload_file_3 ./ > ftp.log 2>&1 &
-        sleep 20
+        sleep 120
         echo "$upload_file_3 Sent to ZZ-NAS"
+        bash ftpput.sh $ftp_ip $ftp_username $ftp_psw $TargetPath $upload_file_4 ./ > ftp.log 2>&1 &
+        sleep 20
+        echo "$upload_file_4 Sent to ZZ-NAS"
         sleep 960
         killall -9 ftp
         echo "All Released Files Uploaded to ZZ-NAS"
