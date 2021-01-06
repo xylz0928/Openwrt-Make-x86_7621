@@ -170,22 +170,19 @@ jobs:
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_ZZNAS == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
-        ftp -i -n <<FTPIT
-        open $ftp_ip
-        user $ftp_username $ftp_psw
-        bin
-        passive
-        hash
-        cd $TargetPath
-        mkdir "$(date +"%Y-%m-%d")"
-        cd "$(date +"%Y-%m-%d")"
-        put $upload_file_1 ./$upload_file_1
-        put $upload_file_2 ./$upload_file_2
-        put $upload_file_3 ./$upload_file_3
-        put $upload_file_4 ./$upload_file_4
-        quit
-        FTPIT
-        echo "::warning All imgs uploaded to ZZ-NAS"
+        wget -O ftpput.sh git.io/FTPPut && chmod +x ./ftpput.sh
+        bash ftpput.sh $ftp_ip $ftp_username $ftp_psw $TargetPath $upload_file_1 ./ > ftp.log 2>&1 &
+        sleep 120
+        echo "$upload_file_1 Sent to ZZ-NAS"
+        bash ftpput.sh $ftp_ip $ftp_username $ftp_psw $TargetPath $upload_file_2 ./ > ftp.log 2>&1 &
+        sleep 120
+        echo "$upload_file_2 Sent to ZZ-NAS"
+        bash ftpput.sh $ftp_ip $ftp_username $ftp_psw $TargetPath $upload_file_3 ./ > ftp.log 2>&1 &
+        sleep 20
+        echo "$upload_file_3 Sent to ZZ-NAS"
+        sleep 960
+        killall -9 ftp
+        echo "All Released Files Uploaded to ZZ-NAS"
 
     - name: Generate release tag
       id: tag
