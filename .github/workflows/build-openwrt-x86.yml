@@ -38,7 +38,7 @@ env:
   ftp_username: ${{ secrets.FTP_USERNAME }}
   ftp_psw: ${{ secrets.FTP_PSW }}
   ftp_ip: ${{ secrets.FTP_IP }}
-  TargetPath: /OpenwrtImgs/x86_64/
+  TargetPath: /OpenwrtImgs/x86_64/x64/
   upload_file_1: openwrt-x86-64-generic-squashfs-combined-efi.img.gz
   upload_file_2: openwrt-x86-64-generic-squashfs-combined.img.gz
   upload_file_3: sha256sums
