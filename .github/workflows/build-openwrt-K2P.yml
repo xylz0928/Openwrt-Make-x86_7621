@@ -38,7 +38,7 @@ env:
   ftp_username: ${{ secrets.FTP_USERNAME }}
   ftp_psw: ${{ secrets.FTP_PSW }}
   ftp_ip: ${{ secrets.FTP_IP }}
-  TargetPath: /OpenwrtImgs/mt7621/K2P/
+  TargetPath: OpenwrtImgs/mt7621/K2P
   upload_file_1: openwrt-ramips-mt7621-phicomm_k2p-initramfs-kernel.bin
   upload_file_2: openwrt-ramips-mt7621-phicomm_k2p-squashfs-sysupgrade.bin
   upload_file_3: sha256sums
@@ -169,18 +169,8 @@ jobs:
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_ZZNAS == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
-        wget -O ftpput.sh git.io/FTPPut && chmod +x ./ftpput.sh
-        bash ftpput.sh $ftp_ip $ftp_username $ftp_psw $TargetPath $upload_file_1 ./ > ftp.log 2>&1 &
-        sleep 120
-        echo "$upload_file_1 Sent to ZZ-NAS"
-        bash ftpput.sh $ftp_ip $ftp_username $ftp_psw $TargetPath $upload_file_2 ./ > ftp.log 2>&1 &
-        sleep 120
-        echo "$upload_file_2 Sent to ZZ-NAS"
-        bash ftpput.sh $ftp_ip $ftp_username $ftp_psw $TargetPath $upload_file_3 ./ > ftp.log 2>&1 &
-        sleep 20
-        echo "$upload_file_3 Sent to ZZ-NAS"
-        sleep 960
-        killall -9 ftp
+        echo $ftp_psw > /tmp/rsync.psw && chmod 600 /tmp/rsync.psw
+        rsync -avrzP $upload_file_1 $upload_file_2 $upload_file_3 $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
         echo "All Released Files Uploaded to ZZ-NAS"
 
     - name: Generate release tag
