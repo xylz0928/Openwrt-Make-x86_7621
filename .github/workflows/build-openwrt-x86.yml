@@ -173,7 +173,7 @@ jobs:
         cd openwrt/bin/targets/*/*
         echo $ftp_psw > /tmp/rsync.psw && chmod 600 /tmp/rsync.psw
         rsync -avrzP $upload_file_1 $upload_file_2 $upload_file_3 $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
-        echo "All Released Files Uploaded to ZZ-NAS"
+        echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
 
     - name: Generate release tag
       id: tag
