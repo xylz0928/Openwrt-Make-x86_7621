@@ -176,7 +176,7 @@ jobs:
         send_content2="【${model}】编译成功！固件成功上传到NAS。"
         markdown_splitline="\n\n---\n\n"
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
-        eval "$send_dingding \"${send_content1}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#6A65FF>${send_content1}</font>\"}}'"
+        eval "$send_dingding \"${send_content1}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#6A65FF>${send_content1}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
         
         cd openwrt/bin/targets/*/*
         echo $ftp_psw > /tmp/rsync.psw && chmod 600 /tmp/rsync.psw
@@ -184,7 +184,7 @@ jobs:
         echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
         
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
-        eval "$send_dingding \"${send_content2}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content2}</font>\"}}'"
+        eval "$send_dingding \"${send_content2}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content2}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
 
     - name: Generate release tag
       id: tag
