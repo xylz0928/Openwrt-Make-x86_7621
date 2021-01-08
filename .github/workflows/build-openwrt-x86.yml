@@ -25,6 +25,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
+  model: x86
   CONFIG_FILE: MakeMenu.x86.config
   DIY_P1_SH: diy-x86-part1.sh
   DIY_P2_SH: diy-x86-part2.sh
@@ -42,6 +43,7 @@ env:
   upload_file_1: openwrt-x86-64-generic-squashfs-combined-efi.img.gz
   upload_file_2: openwrt-x86-64-generic-squashfs-combined.img.gz
   upload_file_3: sha256sums
+  whkey: ${{ secrets.WEBHOOK }}
 
 jobs:
   build:
@@ -170,10 +172,20 @@ jobs:
       id: zz-nas
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_ZZNAS == 'true' && !cancelled()
       run: |
+        send_dingding="curl -s \"https://oapi.dingtalk.com/robot/send?access_token=${whkey}\" -H 'Content-Type: application/json' -d '{\"msgtype\": \"markdown\",\"markdown\": {\"title\":"
+        send_content1="【${model}】编译成功！正在上传固件到NAS..."
+        send_content2="【${model}】编译成功！固件成功上传到NAS。"
+        markdown_splitline="\n\n---\n\n"
+        nowtime=`date "+%Y-%m-%d %H:%M:%S"`
+        eval "$send_dingding \"${send_content1}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#6A65FF>${send_content1}</font>\"}}'"
+        
         cd openwrt/bin/targets/*/*
         echo $ftp_psw > /tmp/rsync.psw && chmod 600 /tmp/rsync.psw
         rsync -avrzP $upload_file_1 $upload_file_2 $upload_file_3 $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
         echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
+        
+        nowtime=`date "+%Y-%m-%d %H:%M:%S"`
+        eval "$send_dingding \"${send_content2}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content2}</font>\"}}'"
 
     - name: Generate release tag
       id: tag
