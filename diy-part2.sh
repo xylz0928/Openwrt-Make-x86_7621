@@ -24,7 +24,7 @@ git clone https://github.com/rufengsuixing/luci-app-onliner.git package/luci-app
 
 
 # Add OpenAppFilter
-# [Temp disable OAF caused compile failed] git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
+git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 
 
 # Add ServerChan-DINGDING
