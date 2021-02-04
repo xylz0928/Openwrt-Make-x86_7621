@@ -52,9 +52,9 @@ git clone https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-v
 
 # Add Passwall
 git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
-rm -rf ./package/lean/trojan
-rm -rf ./package/lean/v2ray
-rm -rf ./package/lean/v2ray-plugin
+# rm -rf ./package/lean/trojan
+# rm -rf ./package/lean/v2ray
+# rm -rf ./package/lean/v2ray-plugin
 
 # Add OpenClash
 git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
