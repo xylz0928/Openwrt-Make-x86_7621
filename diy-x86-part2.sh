@@ -65,6 +65,7 @@ rm -rf ./package/lean/v2ray-plugin
 rm -rf ./package/openwrt-passwall/naiveproxy
 rm -rf ./package/openwrt-passwall/tcping
 rm -rf ./package/openwrt-passwall/xray-core
+rm -rf ./package/openwrt-passwall/v2ray
 
 # Add OpenClash
 git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
