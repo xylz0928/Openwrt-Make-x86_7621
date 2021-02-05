@@ -27,6 +27,13 @@ echo "DISTRIB_REVISION='S$(TZ=UTC-8 date +%Y.%m.%d) xylz0928 Products'" > ./pack
 # Change default theme
 sed -i 's/bootstrap/argon/g' feeds/luci/collections/luci/Makefile
 
+# Remove the default apps
+sed -i 's/luci-app-unblockmusic //g' target/linux/x86/Makefile 
+sed -i 's/luci-app-xlnetacc //g' target/linux/x86/Makefile 
+sed -i 's/luci-app-jd-dailybonus //g' target/linux/x86/Makefile 
+sed -i 's/luci-app-ipsec-vpnd //g' target/linux/x86/Makefile 
+sed -i 's/luci-app-adbyby-plus //g' target/linux/x86/Makefile
+
 # Add ServerChan
 # git clone https://github.com/tty228/luci-app-serverchan.git feeds/luci/applications/luci-app-serverchan
 git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
