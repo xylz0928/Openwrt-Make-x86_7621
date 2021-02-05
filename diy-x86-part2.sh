@@ -28,6 +28,7 @@ echo "DISTRIB_REVISION='S$(TZ=UTC-8 date +%Y.%m.%d) xylz0928 Products'" > ./pack
 sed -i 's/bootstrap/argon/g' feeds/luci/collections/luci/Makefile
 
 # Remove the default apps
+sed -i 's/luci-app-zerotier //g' target/linux/x86/Makefile
 sed -i 's/luci-app-unblockmusic //g' target/linux/x86/Makefile 
 sed -i 's/luci-app-xlnetacc //g' target/linux/x86/Makefile 
 sed -i 's/luci-app-jd-dailybonus //g' target/linux/x86/Makefile 
