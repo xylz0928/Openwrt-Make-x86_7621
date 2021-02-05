@@ -78,6 +78,8 @@ git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
 # git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./package/luci-app-adguardhome
 chmod -R 755 ./package/luci-app-adguardhome/*
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./package/adguardhome
+chmod -R 755 ./package/adguardhome/*
 
 # Add KoolProxyR Plus+
 # git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
