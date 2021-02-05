@@ -62,10 +62,14 @@ rm -rf ./package/lean/tcping
 rm -rf ./package/lean/trojan
 rm -rf ./package/lean/v2ray
 rm -rf ./package/lean/v2ray-plugin
-rm -rf ./package/openwrt-passwall/naiveproxy
-rm -rf ./package/openwrt-passwall/tcping
-rm -rf ./package/openwrt-passwall/xray-core
+# rm -rf ./package/openwrt-passwall/naiveproxy
+# rm -rf ./package/openwrt-passwall/tcping
+# rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/v2ray
+rm -rf ./feeds/helloworld/naiveproxy
+rm -rf ./feeds/helloworld/tcping
+rm -rf ./feeds/helloworld/xray-core
+
 
 # Add OpenClash
 git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
