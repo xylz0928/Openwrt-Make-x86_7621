@@ -36,7 +36,7 @@ sed -i 's/luci-app-ipsec-vpnd //g' target/linux/x86/Makefile
 sed -i 's/luci-app-adbyby-plus //g' target/linux/x86/Makefile
 sed -i 's/luci-app-sfe //g' target/linux/x86/Makefile
 sed -i 's/luci-app-uugamebooster//g' target/linux/x86/Makefile
-sed -i 's/kmod-drm-amdgpu \/kmod-drm-amdgpu/g' target/linux/x86/Makefile
+sed -i 's/kmod-drm-amdgpu \\/kmod-drm-amdgpu/g' target/linux/x86/Makefile
 
 
 # Add ServerChan
