@@ -78,7 +78,7 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 rm -rf ./package/openwrt-passwall/tcping
 rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/v2ray
-rm -rf ./package/openwrt-passwall/v2ray-plugin
+* rm -rf ./package/openwrt-passwall/v2ray-plugin
 # rm -rf ./feeds/helloworld/naiveproxy
 # rm -rf ./feeds/helloworld/tcping
 # rm -rf ./feeds/helloworld/xray-core
