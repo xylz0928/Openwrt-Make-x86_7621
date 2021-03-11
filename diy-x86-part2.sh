@@ -16,7 +16,8 @@
 # sed -i 's/or "1"%>/or "1"%> ( <%=luci.sys.exec("expr `cat \/sys\/class\/thermal\/thermal_zone0\/temp` \/ 1000") or "?"%> \&#8451; ) /g' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
 
 sed -i 's/invalid/# invalid/g' package/network/services/samba36/files/smb.conf.template
-echo "DISTRIB_REVISION='S$(TZ=UTC-8 date +%Y.%m.%d) xylz0928 Products'" > ./package/base-files/files/etc/openwrt_release1
+# echo "DISTRIB_REVISION='S$(TZ=UTC-8 date +%Y.%m.%d) xylz0928 Products'" > ./package/base-files/files/etc/openwrt_release1
+sed -i "s/DISTRIB_REVISION='/DISTRIB_REVISION='$(TZ=UTC-8 date +%Y-%m-%d) by xylz0928 /g" /etc/openwrt_release
 
 # Modify index 
 #sed -i 's|https://github.com/sirpdboy/openwrt/actions|https://github.com/xylz0928/Openwrt-Make-x86_7621/actions|g' ./package/diy/autocore/files/x86/index.htm
