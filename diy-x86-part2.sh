@@ -103,6 +103,11 @@ chmod -R 755 ./package/luci-app-koolproxyR/*
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./package/luci-app-socat
 chmod -R 755 ./package/luci-app-socat/*
 
+# Add luci-app-advanced
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-advanced ./package/luci-app-advanced
+chmod -R 755 ./package/luci-app-advanced/*
+
+
 # Add SmartDNS
 # rm -rf ./feeds/packages/net/smartdns
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./package/luci-app-smartdns
