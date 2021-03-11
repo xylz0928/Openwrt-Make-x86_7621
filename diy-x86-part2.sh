@@ -16,10 +16,13 @@
 # sed -i 's/or "1"%>/or "1"%> ( <%=luci.sys.exec("expr `cat \/sys\/class\/thermal\/thermal_zone0\/temp` \/ 1000") or "?"%> \&#8451; ) /g' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
 
 sed -i 's/invalid/# invalid/g' package/network/services/samba36/files/smb.conf.template
-modelmark=`TZ=UTC-8 date +%Y-%m-%d -d +"0"days`' by 然后七年'
+modelmark=`TZ=UTC-8 date +%Y-%m-%d -d +"0"days`' by xylz0928'
 sed -i 's/$(VERSION_DIST_SANITIZED)/$(VERSION_DIST_SANITIZED)-${modelmark}/g' include/image.mk
 # echo "DISTRIB_REVISION='${modelmark}'" > ./package/base-files/files/etc/openwrt_release
-sed -i "s/DISTRIB_REVISION='/DISTRIB_REVISION='$(TZ=UTC-8 date +%Y-%m-%d) by 然后七年 /g" ./package/base-files/files/etc/openwrt_release
+sed -i "s/DISTRIB_REVISION='/DISTRIB_REVISION='$(TZ=UTC-8 date +%Y-%m-%d) by xylz0928 /g" ./package/base-files/files/etc/openwrt_release
+
+echo ' '$(TZ=UTC-8 date +%Y-%m-%d)' by xylz0928' >> ./package/base-files/files/etc/banner
+echo ' -----------------------------------------------------' >> ./package/base-files/files/etc/banner
 
 # Modify index 
 #sed -i 's|https://github.com/sirpdboy/openwrt/actions|https://github.com/xylz0928/Openwrt-Make-x86_7621/actions|g' ./package/diy/autocore/files/x86/index.htm
