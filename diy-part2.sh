@@ -26,6 +26,20 @@ sed -i "s/DISTRIB_REVISION='R[0-9]*\.[0-9]*\.[0-9]*/DISTRIB_REVISION='$modelmark
 # sed -i "s/DISTRIB_REVISION='/DISTRIB_REVISION='$(TZ=UTC-8 date +%Y-%m-%d) by xylz0928 /g" ./package/base-files/files/etc/openwrt_release
 
 # 修改版本号-tty
+echo "    @:     @L                                  @          " >> /tmp/mark
+echo "    @@,,L. @0@@.     @@@@@@@@t     @L         @@;;;;;;f1  " >> /tmp/mark
+echo "  ;@@8 @@  @t :.     @;            @f         @@8  @@     " >> /tmp/mark
+echo ",@@G G@@  @@@        @@00000@@,    @L8@@C  @0@0CCC@@CC01  " >> /tmp/mark
+echo "    @@@  @@ @@       @ L1;;fi   @@@f           8@  @@     " >> /tmp/mark
+echo "  @@@  G@@   0@@@   @@ @@   @,     @f          8@  @@     " >> /tmp/mark
+echo "   @@ L@ @@  @@    ,@8 @@   @.     @f   @t  :Liiiii@@iiiG " >> /tmp/mark
+echo "  @@, 0@, @@  @@G @@@  @@@@@@;     @@@@@1          @@     " >> /tmp/mark
+echo " ;                                                 tt     " >> /tmp/mark
+echo " -----------------------------------------------------" >> /tmp/mark
+
+sed -i '1,5d' ./package/base-files/files/etc/banner
+sed -i '1r /tmp/mark' ./package/base-files/files/etc/banner
+
 echo ' Built on '$(TZ=UTC-8 date +%Y-%m-%d)' by xylz0928' >> ./package/base-files/files/etc/banner
 echo ' -----------------------------------------------------' >> ./package/base-files/files/etc/banner
 
