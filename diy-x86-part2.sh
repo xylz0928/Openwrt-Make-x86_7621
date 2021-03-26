@@ -125,6 +125,7 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-koolproxyR ./
 chmod -R 755 ./package/luci-app-koolproxyR/*
 
 # Add luci-app-socat
+# svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-socat ./package/luci-app-socat
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./package/luci-app-socat
 chmod -R 755 ./package/luci-app-socat/*
 
