@@ -51,7 +51,7 @@ echo ' -----------------------------------------------------' >> ./package/base-
 
 # Change Argon Theme
 rm -rf ./package/lean/luci-theme-argon  
-git clone https://github.com/jerrykuku/luci-theme-argon.git ./package/luci-theme-argon
+git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./package/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/luci-app-argon-config
 
 # Change default theme
