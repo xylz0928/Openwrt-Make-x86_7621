@@ -10,10 +10,6 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
-# Change Argon Theme
-# rm -rf ./package/lean/luci-theme-argon  
-# git clone https://github.com/jerrykuku/luci-theme-argon.git ./package/luci-theme-argon
-
 
 # 修复核心及添加温度显示
 # sed -i 's|pcdata(boardinfo.system or "?")|luci.sys.exec("uname -m") or "?"|g' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
@@ -52,6 +48,10 @@ echo ' -----------------------------------------------------' >> ./package/base-
 #sed -i 's|https://github.com/sirpdboy/openwrt18.06/issues|https://github.com/xylz0928/Openwrt-Make-x86_7621/issues|g' ./package/diy/autocore/files/x86/index.htm
 #sed -i 's|固件TG聊天群|作者网站首页|g' ./package/diy/autocore/files/x86/index.htm
 #sed -i 's|https://t.me/joinchat/AAAAAEpRF88NfOK5vBXGBQ|https://7ze.top|g' ./package/diy/autocore/files/x86/index.htm
+
+# Change Argon Theme
+# rm -rf ./package/lean/luci-theme-argon  
+# git clone https://github.com/jerrykuku/luci-theme-argon.git ./package/luci-theme-argon
 
 # Change default theme
 sed -i 's/bootstrap/argon/g' feeds/luci/collections/luci/Makefile
