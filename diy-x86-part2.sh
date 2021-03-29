@@ -57,6 +57,8 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/luci-
 # Change default BackGround img
 # rm ./package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 wget -O ./package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg https://github.com/xylz0928/Openwrt-Make-x86_7621/raw/main/BigSurLight.jpg
+svn co https://github.com/xylz0928/luci-mod/trunk/feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons ./package/lucimod
+mv package/lucimod/* feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons/
 
 # Change default theme
 sed -i 's/bootstrap/argon/g' feeds/luci/collections/luci/Makefile
