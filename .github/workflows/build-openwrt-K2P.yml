@@ -114,7 +114,7 @@ jobs:
       id: compile
       run: |
         send_dingding="curl -s \"https://oapi.dingtalk.com/robot/send?access_token=${whkey}\" -H 'Content-Type: application/json' -d '{\"msgtype\": \"markdown\",\"markdown\": {\"title\":"
-        send_content0="【${model}】正在启动编译！请稍后大约4小时..."
+        send_content0="【${model}】正在启动编译！请稍后大约1.5小时..."
         markdown_splitline="\n\n---\n\n"
         GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
