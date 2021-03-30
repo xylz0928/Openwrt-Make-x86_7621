@@ -113,6 +113,13 @@ jobs:
     - name: Compile the firmware
       id: compile
       run: |
+        send_dingding="curl -s \"https://oapi.dingtalk.com/robot/send?access_token=${whkey}\" -H 'Content-Type: application/json' -d '{\"msgtype\": \"markdown\",\"markdown\": {\"title\":"
+        send_content0="【${model}】正在启动编译！请稍后大约4小时..."
+        markdown_splitline="\n\n---\n\n"
+        GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+        nowtime=`date "+%Y-%m-%d %H:%M:%S"`
+        eval "$send_dingding \"${send_content0}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#6A65FF>${send_content1}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
+        
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
