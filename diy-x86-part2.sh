@@ -28,16 +28,16 @@ sed -i "s/DISTRIB_REVISION='R[0-9]*\.[0-9]*\.[0-9]*/DISTRIB_REVISION='$modelmark
 # 修改tty banner
 
 
-echo "     █       █  ▚           ▟               █         " >> /tmp/mark
-echo "     █████   █      █████████     █        █████████  " >> /tmp/mark
-echo "    █ ▃ ██ ██████   ██            █        █   ██     " >> /tmp/mark
-echo "  ██ ▃ ██   █ █     █████████     ██████ ██ ████████  " >> /tmp/mark
-echo "     ██    █   █    █ ██████  ███▟          █  ██     " >> /tmp/mark
-echo "   ██     █     ██  █ █    █      █         █  ██     " >> /tmp/mark
-echo "    ▞  ▚   ▚   ▚    █ █    █      █   █  ████████████ " >> /tmp/mark
-echo "  ▞▞▞  ▚▚▚ ▚▚▚ ▚▚▚ ▟  ██████      █████        ██     " >> /tmp/mark
-echo "                                               ██     " >> /tmp/mark
-echo " -----------------------------------------------------" >> /tmp/mark
+echo "     █      █  ▚           ▟               █         " >> /tmp/mark
+echo "    █████   █      █████████     █        █████████  " >> /tmp/mark
+echo "   █ ▃ ██ ██████   ██            █        █   ██     " >> /tmp/mark
+echo " ██ ▃ ██   █ █     █████████     ██████ ██ ████████  " >> /tmp/mark
+echo "    ██    █   █    █ ██████  ███▟          █  ██     " >> /tmp/mark
+echo "  ██     █     ██  █ █    █      █         █  ██     " >> /tmp/mark
+echo "   ▞  ▚   ▚   ▚    █ █    █      █   █  ████████████ " >> /tmp/mark
+echo " ▞▞▞  ▚▚▚ ▚▚▚ ▚▚▚ ▟  ██████      █████        ██     " >> /tmp/mark
+echo "                                              ██     " >> /tmp/mark
+echo "-----------------------------------------------------" >> /tmp/mark
 
 # echo "    @:     @L                                 @          " >> /tmp/mark
 # echo "    @@,,L. @0@@.     @@@@@@@@t     @L        @@;;;;;;f1  " >> /tmp/mark
