@@ -145,6 +145,10 @@ chmod -R 755 ./package/luci-app-adguardhome/*
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./package/adguardhome
 chmod -R 755 ./package/adguardhome/*
 
+# Add WOL Plus
+svn co https://github.com/sundaqiang/openwrt-packages/trunk/luci-app-services-wolplus ./package/luci-app-wolplus
+chmod -R 755 ./package/luci-app-wolplus/*
+
 # Add KoolProxyR Plus+
 # git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-koolproxyR ./package/luci-app-koolproxyR
