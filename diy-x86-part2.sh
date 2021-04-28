@@ -151,8 +151,8 @@ chmod -R 755 ./package/luci-app-wolplus/*
 
 # Add KoolProxyR Plus+
 # git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-koolproxyR ./package/luci-app-koolproxyR
-chmod -R 755 ./package/luci-app-koolproxyR/*
+# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-koolproxyR ./package/luci-app-koolproxyR
+# chmod -R 755 ./package/luci-app-koolproxyR/*
 
 # Add GodProxy
 git clone https://github.com/godros/luci-app-godproxy.git package/luci-app-godproxy
