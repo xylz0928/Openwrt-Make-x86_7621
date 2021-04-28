@@ -150,6 +150,9 @@ chmod -R 755 ./package/adguardhome/*
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-koolproxyR ./package/luci-app-koolproxyR
 chmod -R 755 ./package/luci-app-koolproxyR/*
 
+# Add GodProxy
+git clone https://github.com/godros/luci-app-godproxy.git package/luci-app-godproxy
+
 # Add luci-app-socat
 # svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-socat ./package/luci-app-socat
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./package/luci-app-socat
