@@ -19,6 +19,15 @@ rm -rf package/lean/qt5
 rm -rf package/lean/qBittorrent
 rm -rf package/lean/luci-app-qbittorrent
 
+# Passwall 编译依赖
+svn co https://github.com/coolsnowwolf/lede/trunk/tools/ucl ./tools/ucl
+chmod -R 755 ./tools/ucl
+svn co https://github.com/coolsnowwolf/lede/trunk/tools/upx ./tools/upx
+chmod -R 755 ./tools/upx
+echo '$(curdir)/upx/compile := $(curdir)/ucl/compile' >> ./tools/Makefile
+echo "tools-y += ucl upx" >> ./tools/Makefile
+
+
 # autosamba 依赖 samba
 svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-samba ./package/collected/luci-app-samba
 chmod -R 755 ./package/collected/luci-app-samba
