@@ -14,14 +14,14 @@
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean ./package/lean/
 chmod -R 755 ./package/lean/*
 
-
 rm -rf package/lean/luci-app-docker
 rm -rf package/lean/qt5
-
+rm -rf package/lean/qBittorrent
 
 # autosamba 依赖 samba
-svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-samba ./package/collected/luci-app-samba
-chmod -R 755 ./package/collected/luci-app-samba
+svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-samba ./feeds/luci/applications/luci-app-samba
+chmod -R 755 ./feeds/luci/applications/luci-app-samba
+
 
 # 修改版本号-webui
 modelmark=R`TZ=UTC-8 date +%Y-%m-%d -d +"0"days`' by xylz0928'
