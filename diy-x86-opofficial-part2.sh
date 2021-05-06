@@ -17,6 +17,7 @@ chmod -R 755 ./package/lean/*
 rm -rf package/lean/luci-app-docker
 rm -rf package/lean/qt5
 rm -rf package/lean/qBittorrent
+rm -rf package/lean/luci-app-qbittorrent
 
 # autosamba 依赖 samba
 svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-samba ./feeds/luci/applications/luci-app-samba
