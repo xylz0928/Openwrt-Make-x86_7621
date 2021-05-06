@@ -20,8 +20,12 @@ rm -rf package/lean/qBittorrent
 rm -rf package/lean/luci-app-qbittorrent
 
 # autosamba 依赖 samba
-svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-samba ./feeds/luci/applications/luci-app-samba
-chmod -R 755 ./feeds/luci/applications/luci-app-samba
+svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-samba ./package/collected/luci-app-samba
+chmod -R 755 ./package/collected/luci-app-samba
+sed -i "s|../../luci.mk|../../../feeds/luci/luci.mk|g" ./package/collected/luci-app-samba/Makefile
+
+svn co https://github.com/coolsnowwolf/lede/trunk/package/network/services/samba36 ./package/collected/samba36
+chmod -R 755 ./package/collected/samba36
 
 
 # 修改版本号-webui
