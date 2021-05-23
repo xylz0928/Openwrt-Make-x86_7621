@@ -143,7 +143,7 @@ git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./package/luci-app-adguardhome
 chmod -R 755 ./package/luci-app-adguardhome/*
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./package/adguardhome
-sed -i 's/        /	/g' ./package/adguardhome/Makefile
+# sed -i 's/        /	/g' ./package/adguardhome/Makefile
 chmod -R 755 ./package/adguardhome/*
 
 # Add WOL Plus
