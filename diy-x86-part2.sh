@@ -84,10 +84,13 @@ sed -i 's/luci-app-xlnetacc //g' target/linux/x86/Makefile
 sed -i 's/luci-app-jd-dailybonus //g' target/linux/x86/Makefile
 sed -i 's/luci-app-ipsec-vpnd //g' target/linux/x86/Makefile
 sed -i 's/luci-app-adbyby-plus //g' target/linux/x86/Makefile
-sed -i 's/luci-app-sfe //g' target/linux/x86/Makefile
+# sed -i 's/luci-app-sfe //g' target/linux/x86/Makefile
 sed -i 's/luci-app-uugamebooster//g' target/linux/x86/Makefile
-sed -i 's/-luci-app-flowoffload//g' target/linux/x86/Makefile
-sed -i 's/kmod-drm-amdgpu \\/kmod-drm-amdgpu/g' target/linux/x86/Makefile
+# sed -i 's/-luci-app-flowoffload//g' target/linux/x86/Makefile
+# sed -i 's/kmod-drm-amdgpu \\/kmod-drm-amdgpu/g' target/linux/x86/Makefile
+sed -e '/luci-app-filetransfer/d' include/target.mk
+sed -e '/luci-app-vlmcsd/d' include/target.mk
+sed -e '/luci-app-flowoffload/d' include/target.mk
 
 
 # Add ServerChan
