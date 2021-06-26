@@ -91,7 +91,8 @@ sed -i 's/luci-app-uugamebooster//g' target/linux/x86/Makefile
 sed -e '/luci-app-filetransfer/d' include/target.mk
 sed -e '/luci-app-vlmcsd/d' include/target.mk
 sed -e '/luci-app-flowoffload/d' include/target.mk
-
+# Re-enable SFE for 5.10
+sed -i 's/@!LINUX_5_10 //g' package/lean/luci-app-sfe/Makefile
 
 # Add ServerChan
 # git clone https://github.com/tty228/luci-app-serverchan.git feeds/luci/applications/luci-app-serverchan
