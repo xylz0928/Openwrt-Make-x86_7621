@@ -40,9 +40,9 @@ env:
   ftp_psw: ${{ secrets.FTP_PSW }}
   ftp_ip: ${{ secrets.FTP_IP }}
   TargetPath: OpenwrtImgs/mt7621/R3P
-  upload_file_1: openwrt-ramips-mt7621-xiaomi_mir3p-initramfs-kernel.bin
-  upload_file_2: openwrt-ramips-mt7621-xiaomi_mir3p-squashfs-factory.bin
-  upload_file_3: openwrt-ramips-mt7621-xiaomi_mir3p-squashfs-sysupgrade.bin
+  upload_file_1: openwrt-ramips-mt7621-xiaomi_mi-router-3-pro-initramfs-kernel.bin
+  upload_file_2: openwrt-ramips-mt7621-xiaomi_mi-router-3-pro-squashfs-factory.bin
+  upload_file_3: openwrt-ramips-mt7621-xiaomi_mi-router-3-pro-squashfs-sysupgrade.bin
   upload_file_4: sha256sums
   whkey: ${{ secrets.WEBHOOK }}
 
