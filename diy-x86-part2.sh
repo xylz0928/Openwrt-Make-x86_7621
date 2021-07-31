@@ -11,8 +11,8 @@
 #
 
 
-#切换ramips内核为 5.10
-sed -i 's/5.4/5.10/g' ./target/linux/ramips/Makefile
+# 切换ramips内核为 5.10
+# sed -i 's/5.4/5.10/g' ./target/linux/ramips/Makefile
 
 # 修复核心及添加温度显示
 # sed -i 's|pcdata(boardinfo.system or "?")|luci.sys.exec("uname -m") or "?"|g' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
