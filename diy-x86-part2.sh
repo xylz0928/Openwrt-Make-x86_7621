@@ -118,8 +118,11 @@ git clone https://github.com/rufengsuixing/luci-app-onliner.git package/luci-app
 # git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 
 
+# remove lede linked luci-app-pushbot
+rm -rf ./package/lean/luci-app-pushbot
 # Add PushBot
 git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
+
 
 # Add Hello World
 # svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/diy/luci-app-vssr
