@@ -14,7 +14,7 @@
 # 切换ramips内核为 5.10
 sed -i 's/5.4/5.10/g' ./target/linux/ramips/Makefile
 
-# 切换ramips内核为 5.10
+# 切换x86内核为 5.10
 sed -i 's/5.4/5.10/g' ./target/linux/x86/Makefile
 
 # 修复核心及添加温度显示
