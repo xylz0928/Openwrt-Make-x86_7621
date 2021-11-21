@@ -32,8 +32,7 @@ sed -i "s/DISTRIB_REVISION='R[0-9]*\.[0-9]*\.[0-9]*/DISTRIB_REVISION='$modelmark
 # sed -i "s/DISTRIB_REVISION='/DISTRIB_REVISION='$(TZ=UTC-8 date +%Y-%m-%d) by xylz0928 /g" ./package/base-files/files/etc/openwrt_release
 
 # 修改tty banner
-
-
+echo " -----------------------------------------------------" >> /tmp/mark
 echo "      █      █  ▚           ▟               █         " >> /tmp/mark
 echo "     █████   █      █████████     █        █████████  " >> /tmp/mark
 echo "    █ ▃ ██ ██████   ██            █        █   ██     " >> /tmp/mark
@@ -44,6 +43,26 @@ echo "    ▞  ▚   ▚   ▚    █ █    █      █   █  █████
 echo "  ▞▞▞  ▚▚▚ ▚▚▚ ▚▚▚ ▟  ██████      █████        ██     " >> /tmp/mark
 echo "                                               ██     " >> /tmp/mark
 echo " -----------------------------------------------------" >> /tmp/mark
+echo "     _________       _    ___ ___  ___                " >> /tmp/mark
+echo "    /        /\     | |  | __|   \| __|               " >> /tmp/mark
+echo "   /  LE    /  \    | |__| _|| |) | _|                " >> /tmp/mark
+echo "  /    DE  /    \   |____|___|___/|___|               " >> /tmp/mark
+echo " /________/  LE  \                                    " >> /tmp/mark
+echo " \        \   DE / -----------------------------------" >> /tmp/mark
+echo "  \    LE  \    /  %D %V, %C                          " >> /tmp/mark
+echo "   \  DE    \  /   timestamp                          " >> /tmp/mark
+echo "    \________\/    -----------------------------------" >> /tmp/mark
+
+# echo "      █      █  ▚           ▟               █         " >> /tmp/mark
+# echo "     █████   █      █████████     █        █████████  " >> /tmp/mark
+# echo "    █ ▃ ██ ██████   ██            █        █   ██     " >> /tmp/mark
+# echo "  ██ ▃ ██   █ █     █████████     ██████ ██ ████████  " >> /tmp/mark
+# echo "     ██    █   █    █ ██████  ███▟          █  ██     " >> /tmp/mark
+# echo "   ██     █     ██  █ █    █      █         █  ██     " >> /tmp/mark
+# echo "    ▞  ▚   ▚   ▚    █ █    █      █   █  ████████████ " >> /tmp/mark
+# echo "  ▞▞▞  ▚▚▚ ▚▚▚ ▚▚▚ ▟  ██████      █████        ██     " >> /tmp/mark
+# echo "                                               ██     " >> /tmp/mark
+# echo " -----------------------------------------------------" >> /tmp/mark
 
 # echo "    @:     @L                                 @          " >> /tmp/mark
 # echo "    @@,,L. @0@@.     @@@@@@@@t     @L        @@;;;;;;f1  " >> /tmp/mark
@@ -56,12 +75,16 @@ echo " -----------------------------------------------------" >> /tmp/mark
 # echo " ;                                                tt     " >> /tmp/mark
 # echo " -----------------------------------------------------" >> /tmp/mark
 
-sed -i '1,5d' ./package/base-files/files/etc/banner
-sed -i '1r /tmp/mark' ./package/base-files/files/etc/banner
+# sed -i '1,5d' ./package/base-files/files/etc/banner
+# sed -i '1r /tmp/mark' ./package/base-files/files/etc/banner
+
+> ./package/base-files/files/etc/banner
+cat /tmp/mark >> ./package/base-files/files/etc/banner
 
 # 修改版本号-tty
-echo ' Built on '$(TZ=UTC-8 date +%Y-%m-%d)' by xylz0928' >> ./package/base-files/files/etc/banner
-echo ' -----------------------------------------------------' >> ./package/base-files/files/etc/banner
+sed -i "s/timestamp/Built on '$(TZ=UTC-8 date +%Y-%m-%d)' by xylz0928/g" ./package/base-files/files/etc/banner
+# echo ' Built on '$(TZ=UTC-8 date +%Y-%m-%d)' by xylz0928' >> ./package/base-files/files/etc/banner
+# echo ' -----------------------------------------------------' >> ./package/base-files/files/etc/banner
 
 # Modify index 
 #sed -i 's|https://github.com/sirpdboy/openwrt/actions|https://github.com/xylz0928/Openwrt-Make-x86_7621/actions|g' ./package/diy/autocore/files/x86/index.htm
