@@ -23,6 +23,10 @@ sed -i 's/5.4/5.10/g' ./target/linux/x86/Makefile
 
 sed -i 's/invalid/# invalid/g' package/network/services/samba36/files/smb.conf.template
 
+# 注释默认防火墙规则
+sed -i "s/echo 'iptables/echo '# iptables/g" ./package/lean/default-settings/files/zzz-default-settings
+sed -i "s/echo '\[ -n/echo '# \[ -n/g" ./package/lean/default-settings/files/zzz-default-settings
+
 # 修改版本号-webui
 modelmark=R`TZ=UTC-8 date +%Y-%m-%d -d +"0"days`' by xylz0928'
 sed -i "s/DISTRIB_REVISION='R[0-9]*\.[0-9]*\.[0-9]*/DISTRIB_REVISION='$modelmark/g" ./package/lean/default-settings/files/zzz-default-settings
