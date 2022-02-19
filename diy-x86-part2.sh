@@ -97,7 +97,8 @@ sed -i "s/timestamp/Built on '$(TZ=UTC-8 date +%Y-%m-%d)' by xylz0928/g" ./packa
 #sed -i 's|https://t.me/joinchat/AAAAAEpRF88NfOK5vBXGBQ|https://7ze.top|g' ./package/diy/autocore/files/x86/index.htm
 
 # Change Argon Theme
-rm -rf ./package/lean/luci-theme-argon  
+# rm -rf ./package/lean/luci-theme-argon 
+rm -rf ./feeds/luci/themes/luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./package/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/luci-app-argon-config
 
@@ -147,7 +148,8 @@ git clone https://github.com/rufengsuixing/luci-app-onliner.git package/luci-app
 
 
 # remove lede linked luci-app-pushbot
-rm -rf ./package/lean/luci-app-pushbot
+# rm -rf ./package/lean/luci-app-pushbot
+rm -rf ./feeds/luci/applications/luci-app-pushbot
 # Add PushBot
 git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
 
