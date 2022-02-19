@@ -196,7 +196,7 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./package/
 chmod -R 755 ./package/adguardhome/*
 
 # Add WOL Plus
-svn co https://github.com/sundaqiang/openwrt-packages/trunk/luci-app-services-wolplus ./package/luci-app-wolplus
+svn co https://github.com/sundaqiang/openwrt-packages/trunk/luci-app-wolplus ./package/luci-app-wolplus
 chmod -R 755 ./package/luci-app-wolplus/*
 
 # Add KoolProxyR Plus+
