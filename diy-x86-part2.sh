@@ -146,6 +146,8 @@ git clone https://github.com/rufengsuixing/luci-app-onliner.git package/luci-app
 # Add OpenAppFilter
 # git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 
+# Add Dockerman
+git clone https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
 
 # remove lede linked luci-app-pushbot
 # rm -rf ./package/lean/luci-app-pushbot
