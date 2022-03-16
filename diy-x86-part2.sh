@@ -28,7 +28,7 @@ sed -i "s/echo 'iptables/echo '# iptables/g" ./package/lean/default-settings/fil
 sed -i "s/echo '\[ -n/echo '# \[ -n/g" ./package/lean/default-settings/files/zzz-default-settings
 
 # 修改版本号-webui
-modelmark=R`TZ=UTC-8 date +%Y-%m-%d -d +"0"days`' by xylz0928'
+modelmark=R`TZ=UTC-8 date +%Y-%m-%d -d +"1"days`' by xylz0928'
 sed -i "s/DISTRIB_REVISION='R[0-9]*\.[0-9]*\.[0-9]*/DISTRIB_REVISION='$modelmark/g" ./package/lean/default-settings/files/zzz-default-settings
 # sed -i 's/$(VERSION_DIST_SANITIZED)/$(VERSION_DIST_SANITIZED)-${modelmark}/g' include/image.mk
 # sed -i 's/$(VERSION_DIST_SANITIZED)/$(VERSION_DIST_SANITIZED)-$(shell TZ=UTC-8 date +%Y.%m.%d)_By_xylz0928/g' include/image.mk
@@ -86,7 +86,7 @@ echo "    \________\/    -----------------------------------" >> /tmp/mark
 cat /tmp/mark >> ./package/base-files/files/etc/banner
 
 # 修改版本号-tty
-sed -i "s/timestamp/Built on '$(TZ=UTC-8 date +%Y-%m-%d)' by xylz0928/g" ./package/base-files/files/etc/banner
+sed -i "s/timestamp/Built on '$(TZ=UTC-8 date +%Y-%m-%d -d +"1"days)' by xylz0928/g" ./package/base-files/files/etc/banner
 # echo ' Built on '$(TZ=UTC-8 date +%Y-%m-%d)' by xylz0928' >> ./package/base-files/files/etc/banner
 # echo ' -----------------------------------------------------' >> ./package/base-files/files/etc/banner
 
