@@ -165,7 +165,10 @@ git clone https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxmin
 git clone https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
 
 # Add Passwall
-git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
+https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
+svn co https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 ./package/luci-app-passwall2
+chmod -R 755 ./package/luci-app-passwall2/*
+# https://github.com/xiaorouji/openwrt-passwall/tree/luci/luci-app-passwall
 # rm -rf ./package/lean/dns2socks
 # rm -rf ./package/lean/ipt2socks
 # rm -rf ./package/lean/kcptun
