@@ -186,9 +186,6 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
 # rm -rf ./feeds/helloworld/xray-core
 
 
-# Add OpenClash
-git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
-
 # Add ADGuardHome
 # git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./package/luci-app-adguardhome
@@ -233,6 +230,9 @@ git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-p
 # curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 # chmod -R 755 ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 # chmod -R 755 ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm
+
+# Add OpenClash
+git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
 
 # Fix Multi-use on one physical port 
 # 修复 5.4.68-5.4.69内核 于 MIPS 架构 单线复用BUG
