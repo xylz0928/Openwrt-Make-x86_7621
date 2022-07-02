@@ -238,6 +238,10 @@ git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-p
 # chmod -R 755 ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 # chmod -R 755 ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm
 
+# Add ByPass
+svn co https://github.com/kiddin9/openwrt-bypass/trunk/luci-app-bypass ./package/luci-app-bypass
+chmod -R 755 ./package/luci-app-bypass/*
+
 # Add OpenClash
 git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
 
