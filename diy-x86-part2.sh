@@ -243,7 +243,9 @@ svn co https://github.com/kiddin9/openwrt-bypass/trunk/luci-app-bypass ./package
 chmod -R 755 ./package/luci-app-bypass/*
 
 # Add OpenClash
-git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
+# git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
+svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/luci-app-openclash
+chmod -R 755 ./package/luci-app-openclash/*
 
 # Fix Multi-use on one physical port 
 # 修复 5.4.68-5.4.69内核 于 MIPS 架构 单线复用BUG
