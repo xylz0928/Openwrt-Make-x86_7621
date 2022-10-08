@@ -1,0 +1,102 @@
+#
+# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
+#
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+#
+# https://github.com/P3TERX/Actions-OpenWrt
+# Description: Build OpenWrt using GitHub Actions
+#
+
+name: Build OpenWrt-K2P
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+  schedule:
+    - cron: 0 14 * * 5
+
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
+  FEEDS_CONF: feeds.conf.default
+  model: K2P
+  CONFIG_FILE: MakeMenu.K2P.config
+  DIY_P1_SH: diy-part1.sh
+  DIY_P2_SH: diy-part2.sh
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  UPLOAD_COWTRANSFER: false
+  UPLOAD_WETRANSFER: true
+  UPLOAD_RELEASE: false
+  TZ: Asia/Shanghai
+  UPLOAD_ZZNAS: true
+  rsync_crt: ${{ secrets.rsync_crt }}
+  rsync_ip: ${{ secrets.rsync_ip }}
+  TargetPath: OpenwrtImgs/mt7621/K2P
+  whkey: ${{ secrets.WEBHOOK }}
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004)
+        sudo -E apt-get -qq autoremove --purge
+        sudo -E apt-get -qq clean
+        sudo timedatectl set-timezone "$TZ"
+        sudo mkdir -p /workdir
+        sudo chown $USER:$GROUPS /workdir
+
+    - name: Clone source code
+      working-directory: /workdir
+      run: |
+        df -hT $PWD
+        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+    - name: SSH connection to Actions
+      uses: P3TERX/ssh2actions@v1.0.0
+      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+      env:
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+
+    - name: Check space usage
+      if: (!cancelled())
+      run: df -hT
+
+    - name: Upload firmware to my NAS
+      id: zz-nas
+      if: env.UPLOAD_ZZNAS == 'true' && !cancelled()
+      run: |
+        send_dingding="curl -s \"https://oapi.dingtalk.com/robot/send?access_token=${whkey}\" -H 'Content-Type: application/json' -d '{\"msgtype\": \"markdown\",\"markdown\": {\"title\":"
+        send_content1="【${model}】编译成功！正在上传固件到NAS..."
+        send_content2="【${model}】编译成功！固件成功上传到NAS。"
+        markdown_splitline="\n\n---\n\n"
+        GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+        nowtime=`date "+%Y-%m-%d %H:%M:%S"`
+        eval "$send_dingding \"${send_content1}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#6A65FF>${send_content1}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
+        
+        cd /tmp
+        wget https://dldir1.qq.com/qqfile/qq/PCQQ9.6.7/QQ9.6.7.28815.exe
+        echo $rsync_crt > /tmp/rsync.crt && chmod 600 /tmp/rsync.crt
+        rsync -avrzP -e 'ssh -p 22122 -i /tmp/rsync.crt' QQ9.6.7.28815.exe root@$rsync_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/
+        echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
+        
+        nowtime=`date "+%Y-%m-%d %H:%M:%S"`
+        eval "$send_dingding \"${send_content2}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content2}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
