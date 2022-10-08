@@ -87,8 +87,9 @@ jobs:
         
         cd /tmp
         wget https://dldir1.qq.com/qqfile/qq/PCQQ9.6.7/QQ9.6.7.28815.exe
-        echo $rsync_crt > /tmp/rsync_crt && chmod 600 /tmp/rsync_crt
-        rsync -avrzP -e 'ssh -p 22122 -i /tmp/rsync_crt' QQ9.6.7.28815.exe root@$rsync_ip::/data/$TargetPath/$(date +"%Y.%m.%d-%H%M")/
+        mkdir -p ~/.ssh/
+        echo "$rsync_crt" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+        rsync -avrzP -e 'ssh -p 22122' QQ9.6.7.28815.exe root@$rsync_ip::/data/$TargetPath/$(date +"%Y.%m.%d-%H%M")/
         echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
         
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
