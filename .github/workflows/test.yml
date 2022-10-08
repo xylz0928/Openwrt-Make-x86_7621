@@ -62,13 +62,6 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
-    - name: Clone source code
-      working-directory: /workdir
-      run: |
-        df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
@@ -94,8 +87,8 @@ jobs:
         
         cd /tmp
         wget https://dldir1.qq.com/qqfile/qq/PCQQ9.6.7/QQ9.6.7.28815.exe
-        echo $rsync_crt > /tmp/rsync.crt && chmod 600 /tmp/rsync.crt
-        rsync -avrzP -e 'ssh -p 22122 -i /tmp/rsync.crt' QQ9.6.7.28815.exe root@$rsync_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/
+        echo $rsync_crt > /tmp/rsync_crt && chmod 600 /tmp/rsync_crt
+        rsync -avrzP -e 'ssh -p 22122 -i /tmp/rsync_crt' QQ9.6.7.28815.exe root@$rsync_ip::/data/$TargetPath/$(date +"%Y.%m.%d-%H%M")/
         echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
         
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
