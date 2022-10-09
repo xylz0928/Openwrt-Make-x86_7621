@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/bin/bash
+set -e
 cd ~
 git clone https://github.com/coolsnowwolf/lede
 cd lede
