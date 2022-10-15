@@ -217,7 +217,7 @@ jobs:
         eval "$send_dingding \"${send_content2}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content2}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
 
     - name: Delete workflow runs
-      uses: GitRML/delete-workflow-runs@main
+      uses: xylz0928/delete-workflow-runs@main
       with:
         retain_days: 1
         keep_minimum_runs: 3
