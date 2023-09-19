@@ -63,9 +63,9 @@ jobs:
       uses: actions/checkout@main
       
     - name: Build
-        run: |
-          echo "Free space:"
-          df -h
+      run: |
+        echo "Free space:"
+        df -h
 
     - name: Initialization environment
       env:
