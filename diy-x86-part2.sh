@@ -166,9 +166,9 @@ git clone https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-v
 
 # Add Passwall
 # Dependencies
-git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
+git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
 #Passwall
-git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
 #Passwall2
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 # svn co https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 ./package/luci-app-passwall2
