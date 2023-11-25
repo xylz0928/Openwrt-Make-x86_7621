@@ -29,7 +29,7 @@
 # sed -i '$a src-git onliner https://github.com/rufengsuixing/luci-app-onliner' feeds.conf.default
 # sed -i '$a src-git luci-app-serverchan https://github.com/tty228/luci-app-serverchan' feeds.conf.default
 
-echo 'src-git helloworld https://github.com/fw876/helloworld' >> feeds.conf.default
+# echo 'src-git helloworld https://github.com/fw876/helloworld' >> feeds.conf.default
 # echo 'src-git luciappwrtbwmon https://github.com/brvphoenix/luci-app-wrtbwmon' >> feeds.conf.default
 # echo 'src-git wrtbwmon https://github.com/brvphoenix/wrtbwmon' >> feeds.conf.default
 # echo 'src-git smartdns https://github.com/pymumu/smartdns' >> feeds.conf.default
