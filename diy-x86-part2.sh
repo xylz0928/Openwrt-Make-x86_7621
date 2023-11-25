@@ -162,9 +162,10 @@ git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
 
 git clone -b main https://github.com/fw876/helloworld.git package/helloworld
 
+# git lua-maxminddb 依赖
 git clone https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
-#git lua-maxminddb 依赖
-git clone https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
+
+# git clone https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
 
 # Add Passwall
 # Dependencies
