@@ -156,10 +156,12 @@ rm -rf ./feeds/luci/applications/luci-app-pushbot
 git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
 
 
-# Add Hello World
+# Add Hello World VSSR
 # svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/diy/luci-app-vssr
 # svn co https://github.com/siropboy/luci-app-vssr-plus/trunk/luci-app-vssr-plus package/new/luci-app-vssr-plus
+svn co https://github.com/ysx88/openwrt-packages/trunk/luci-app-vssr package/luci-app-vssr
 
+# Add Hello World SSR Plus+
 git clone -b main https://github.com/fw876/helloworld.git package/helloworld
 
 # git lua-maxminddb 依赖
