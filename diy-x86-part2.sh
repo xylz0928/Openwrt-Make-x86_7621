@@ -160,6 +160,8 @@ git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
 # svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/diy/luci-app-vssr
 # svn co https://github.com/siropboy/luci-app-vssr-plus/trunk/luci-app-vssr-plus package/new/luci-app-vssr-plus
 
+git clone -b main https://github.com/fw876/helloworld.git package/helloworld
+
 git clone https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
 #git lua-maxminddb 依赖
 git clone https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
