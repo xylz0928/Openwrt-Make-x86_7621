@@ -159,7 +159,8 @@ git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
 # Add Hello World VSSR
 # svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/diy/luci-app-vssr
 # svn co https://github.com/siropboy/luci-app-vssr-plus/trunk/luci-app-vssr-plus package/new/luci-app-vssr-plus
-svn co https://github.com/ysx88/openwrt-packages/trunk/luci-app-vssr package/luci-app-vssr
+# svn co https://github.com/ysx88/openwrt-packages/trunk/luci-app-vssr package/luci-app-vssr
+git clone https://github.com/OpenWrt-Actions/luci-app-vssr.git package/luci-app-vssr
 
 # Add Hello World SSR Plus+
 git clone -b main https://github.com/fw876/helloworld.git package/helloworld
