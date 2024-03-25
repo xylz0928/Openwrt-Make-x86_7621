@@ -277,7 +277,7 @@ cd package/luci-app-advanced
 git init
 git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
 git config core.sparseCheckout true
-echo "luci-app-socat" >> .git/info/sparse-checkout
+echo "luci-app-advanced" >> .git/info/sparse-checkout
 git pull origin main
 cd ~/lede
 
