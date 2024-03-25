@@ -105,8 +105,17 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/luci-
 # Change default BackGround img
 # rm ./package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 wget -O ./package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg https://github.com/xylz0928/luci-mod/raw/main/Background/MontereyDark.jpg
-svn co https://github.com/xylz0928/luci-mod/trunk/feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons ./package/lucimod
-mv package/lucimod/* feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons/
+# svn co https://github.com/xylz0928/luci-mod/trunk/feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons ./package/lucimod
+mkdir package/lucimod
+cd package/lucimod
+git init
+git remote add -f origin https://github.com/xylz0928/luci-mod
+git config core.sparseCheckout true
+echo "feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons" >> .git/info/sparse-checkout
+git pull origin main
+cd ~/lede
+
+mv package/lucimod/feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons/* feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons/
 
 # Change default theme
 sed -i 's/bootstrap/argon/g' feeds/luci/collections/luci/Makefile
@@ -204,15 +213,40 @@ git clone https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwa
 
 # Add ADGuardHome
 # git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./package/luci-app-adguardhome
-chmod -R 755 ./package/luci-app-adguardhome/*
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./package/adguardhome
+# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./package/luci-app-adguardhome
+# chmod -R 755 ./package/luci-app-adguardhome/*
+mkdir package/luci-app-adguardhome
+cd package/luci-app-adguardhome
+git init
+git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
+git config core.sparseCheckout true
+echo "luci-app-adguardhome" >> .git/info/sparse-checkout
+git pull origin main
+cd ~/lede
+
+#svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./package/adguardhome
 # sed -i 's/        /	/g' ./package/adguardhome/Makefile
-chmod -R 755 ./package/adguardhome/*
+#chmod -R 755 ./package/adguardhome/*
+mkdir package/adguardhome
+cd package/adguardhome
+git init
+git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
+git config core.sparseCheckout true
+echo "adguardhome" >> .git/info/sparse-checkout
+git pull origin main
+cd ~/lede
 
 # Add WOL Plus
-svn co https://github.com/sundaqiang/openwrt-packages/trunk/luci-app-wolplus ./package/luci-app-wolplus
-chmod -R 755 ./package/luci-app-wolplus/*
+# svn co https://github.com/sundaqiang/openwrt-packages/trunk/luci-app-wolplus ./package/luci-app-wolplus
+# chmod -R 755 ./package/luci-app-wolplus/*
+mkdir package/luci-app-wolplus
+cd package/luci-app-wolplus
+git init
+git remote add -f origin https://github.com/sundaqiang/openwrt-packages
+git config core.sparseCheckout true
+echo "luci-app-wolplus" >> .git/info/sparse-checkout
+git pull origin master
+cd ~/lede
 
 # Add KoolProxyR Plus+
 # git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
@@ -224,12 +258,28 @@ git clone https://github.com/godros/luci-app-godproxy.git package/luci-app-godpr
 
 # Add luci-app-socat
 # svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-socat ./package/luci-app-socat
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./package/luci-app-socat
-chmod -R 755 ./package/luci-app-socat/*
+# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./package/luci-app-socat
+# chmod -R 755 ./package/luci-app-socat/*
+mkdir package/luci-app-socat
+cd package/luci-app-socat
+git init
+git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
+git config core.sparseCheckout true
+echo "luci-app-socat" >> .git/info/sparse-checkout
+git pull origin main
+cd ~/lede
 
 # Add luci-app-advanced
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-advanced ./package/luci-app-advanced
-chmod -R 755 ./package/luci-app-advanced/*
+# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-advanced ./package/luci-app-advanced
+# chmod -R 755 ./package/luci-app-advanced/*
+mkdir package/luci-app-advanced
+cd package/luci-app-advanced
+git init
+git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
+git config core.sparseCheckout true
+echo "luci-app-socat" >> .git/info/sparse-checkout
+git pull origin main
+cd ~/lede
 
 
 # Add SmartDNS
@@ -248,13 +298,31 @@ git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-p
 # chmod -R 755 ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm
 
 # Add ByPass
-svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass ./package/luci-app-bypass
-chmod -R 755 ./package/luci-app-bypass/*
+# svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass ./package/luci-app-bypass
+# chmod -R 755 ./package/luci-app-bypass/*
+
+mkdir package/luci-app-bypass
+cd package/luci-app-bypass
+git init
+git remote add -f origin https://github.com/kiddin9/openwrt-packages
+git config core.sparseCheckout true
+echo "luci-app-bypass" >> .git/info/sparse-checkout
+git pull origin master
+cd ~/lede
 
 # Add OpenClash
 # git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
-svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/luci-app-openclash
-chmod -R 755 ./package/luci-app-openclash/*
+# svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/luci-app-openclash
+# chmod -R 755 ./package/luci-app-openclash/*
+
+mkdir package/luci-app-openclash
+cd package/luci-app-openclash
+git init
+git remote add -f origin https://github.com/vernesong/OpenClash
+git config core.sparseCheckout true
+echo "luci-app-openclash" >> .git/info/sparse-checkout
+git pull origin master
+cd ~/lede
 
 # Fix Multi-use on one physical port 
 # 修复 5.4.68-5.4.69内核 于 MIPS 架构 单线复用BUG
