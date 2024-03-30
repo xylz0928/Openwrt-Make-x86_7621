@@ -113,7 +113,7 @@ git remote add -f origin https://github.com/xylz0928/luci-mod
 git config core.sparseCheckout true
 echo "feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons" >> .git/info/sparse-checkout
 git pull origin main
-cd ~/lede
+cd ../../
 
 mv package/lucimod/feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons/* feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons/
 
@@ -222,7 +222,7 @@ git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
 git config core.sparseCheckout true
 echo "luci-app-adguardhome" >> .git/info/sparse-checkout
 git pull origin main
-cd ~/lede
+cd ../../
 
 #svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./package/adguardhome
 # sed -i 's/        /	/g' ./package/adguardhome/Makefile
@@ -234,7 +234,7 @@ git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
 git config core.sparseCheckout true
 echo "adguardhome" >> .git/info/sparse-checkout
 git pull origin main
-cd ~/lede
+cd ../../
 
 # Add WOL Plus
 # svn co https://github.com/sundaqiang/openwrt-packages/trunk/luci-app-wolplus ./package/luci-app-wolplus
@@ -246,7 +246,7 @@ git remote add -f origin https://github.com/sundaqiang/openwrt-packages
 git config core.sparseCheckout true
 echo "luci-app-wolplus" >> .git/info/sparse-checkout
 git pull origin master
-cd ~/lede
+cd ../../
 
 # Add KoolProxyR Plus+
 # git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
@@ -267,7 +267,7 @@ git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
 git config core.sparseCheckout true
 echo "luci-app-socat" >> .git/info/sparse-checkout
 git pull origin main
-cd ~/lede
+cd ../../
 
 # Add luci-app-advanced
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-advanced ./package/luci-app-advanced
@@ -279,7 +279,7 @@ git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
 git config core.sparseCheckout true
 echo "luci-app-advanced" >> .git/info/sparse-checkout
 git pull origin main
-cd ~/lede
+cd ../../
 
 
 # Add SmartDNS
@@ -308,7 +308,7 @@ git remote add -f origin https://github.com/kiddin9/openwrt-packages
 git config core.sparseCheckout true
 echo "luci-app-bypass" >> .git/info/sparse-checkout
 git pull origin master
-cd ~/lede
+cd ../../
 
 # Add OpenClash
 # git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
@@ -322,7 +322,7 @@ git remote add -f origin https://github.com/vernesong/OpenClash
 git config core.sparseCheckout true
 echo "luci-app-openclash" >> .git/info/sparse-checkout
 git pull origin master
-cd ~/lede
+cd ../../
 
 # Fix Multi-use on one physical port 
 # 修复 5.4.68-5.4.69内核 于 MIPS 架构 单线复用BUG
