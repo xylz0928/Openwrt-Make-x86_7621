@@ -87,9 +87,9 @@ jobs:
         eval "$send_dingding \"${send_content1}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#6A65FF>${send_content1}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
         
         cd /tmp
-        wget https://dldir1.qq.com/qqfile/qq/PCQQ9.6.7/QQ9.6.7.28815.exe
+        wget https://sw.pcmgr.qq.com/3157916a5434133afff67f68962bbe7b/6608160d/spcmgr/download/QQ9.7.22.240318_01.exe
         echo $ftp_psw > /tmp/rsync.psw && chmod 600 /tmp/rsync.psw
-        rsync -avrzP QQ9.6.7.28815.exe $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
+        rsync -avrzP QQ9.7.22.240318_01.exe $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
         echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
         
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
