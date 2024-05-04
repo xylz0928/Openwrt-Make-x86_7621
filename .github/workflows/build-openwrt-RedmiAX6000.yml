@@ -25,7 +25,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  model: R3P
+  model: RedmiAX6000
   CONFIG_FILE: MakeMenu.RedmiAX6000.config
   DIY_P1_SH: diy-x86-part1.sh
   DIY_P2_SH: diy-x86-part2.sh
@@ -39,10 +39,10 @@ env:
   ftp_username: ${{ secrets.FTP_USERNAME }}
   ftp_psw: ${{ secrets.FTP_PSW }}
   ftp_ip: ${{ secrets.FTP_IP }}
-  TargetPath: OpenwrtImgs/mt7621/R3P
-  upload_file_1: openwrt-ramips-mt7621-xiaomi_mi-router-3-pro-initramfs-kernel.bin
-  upload_file_2: openwrt-ramips-mt7621-xiaomi_mi-router-3-pro-squashfs-factory.bin
-  upload_file_3: openwrt-ramips-mt7621-xiaomi_mi-router-3-pro-squashfs-sysupgrade.bin
+  TargetPath: OpenwrtImgs/mt7986/RedmiAX6000
+  upload_file_1: openwrt-mediatek-filogic-xiaomi_redmi-router-ax6000-initramfs-kernel.bin
+  upload_file_2: openwrt-mediatek-filogic-xiaomi_redmi-router-ax6000-squashfs-factory.bin
+  upload_file_3: openwrt-mediatek-filogic-xiaomi_redmi-router-ax6000-squashfs-sysupgrade.bin
   upload_file_4: sha256sums
   whkey: ${{ secrets.WEBHOOK }}
 
