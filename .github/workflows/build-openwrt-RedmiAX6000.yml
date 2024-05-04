@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-R3P
+name: Build OpenWrt-RedmiAX6000
 
 on:
   repository_dispatch:
@@ -26,7 +26,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   model: R3P
-  CONFIG_FILE: MakeMenu.R3P.config
+  CONFIG_FILE: MakeMenu.RedmiAX6000.config
   DIY_P1_SH: diy-x86-part1.sh
   DIY_P2_SH: diy-x86-part2.sh
   UPLOAD_BIN_DIR: false
