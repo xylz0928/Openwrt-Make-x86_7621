@@ -41,9 +41,8 @@ env:
   ftp_ip: ${{ secrets.FTP_IP }}
   TargetPath: OpenwrtImgs/mt7986/RedmiAX6000
   upload_file_1: openwrt-mediatek-filogic-xiaomi_redmi-router-ax6000-initramfs-kernel.bin
-  upload_file_2: openwrt-mediatek-filogic-xiaomi_redmi-router-ax6000-squashfs-factory.bin
-  upload_file_3: openwrt-mediatek-filogic-xiaomi_redmi-router-ax6000-squashfs-sysupgrade.bin
-  upload_file_4: sha256sums
+  upload_file_2: openwrt-mediatek-filogic-xiaomi_redmi-router-ax6000-squashfs-sysupgrade.bin
+  upload_file_3: sha256sums
   whkey: ${{ secrets.WEBHOOK }}
 
 jobs:
@@ -240,7 +239,7 @@ jobs:
         
         cd openwrt/bin/targets/*/*
         echo $ftp_psw > /tmp/rsync.psw && chmod 600 /tmp/rsync.psw
-        rsync -avrzP $upload_file_1 $upload_file_2 $upload_file_3 $upload_file_4 $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
+        rsync -avrzP $upload_file_1 $upload_file_2 $upload_file_3 $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
         echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
         
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
