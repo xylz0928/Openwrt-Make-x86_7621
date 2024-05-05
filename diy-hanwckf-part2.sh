@@ -36,6 +36,7 @@ cat /tmp/release >> ./package/emortal/default-settings/files/99-default-settings
 
 modelmark=R`TZ=Asia/Shanghai date +%Y-%m-%d -d +"5"hours`' by xylz0928'
 sed -i "s/DISTRIB_REVISION='R[0-9]*\.[0-9]*\.[0-9]*/DISTRIB_REVISION='$modelmark/g" ./package/emortal/default-settings/files/99-default-settings
+sed -i "s/ImmortalWRT /ImmortalWRT $modelmark/g" ./package/emortal/default-settings/files/99-default-settings
 # sed -i 's/$(VERSION_DIST_SANITIZED)/$(VERSION_DIST_SANITIZED)-${modelmark}/g' include/image.mk
 # sed -i 's/$(VERSION_DIST_SANITIZED)/$(VERSION_DIST_SANITIZED)-$(shell TZ=UTC-8 date +%Y.%m.%d)_By_xylz0928/g' include/image.mk
 # echo "DISTRIB_REVISION='${modelmark}'" > ./package/base-files/files/etc/openwrt_release
