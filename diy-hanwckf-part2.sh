@@ -23,10 +23,6 @@
 
 sed -i 's/invalid/# invalid/g' package/network/services/samba36/files/smb.conf.template
 
-# 注释默认防火墙规则
-sed -i "s/echo 'iptables/echo '# iptables/g" ./package/lean/default-settings/files/zzz-default-settings
-sed -i "s/echo '\[ -n/echo '# \[ -n/g" ./package/lean/default-settings/files/zzz-default-settings
-
 # 修改版本号-webui
 echo "sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release" >> /tmp/release
 echo "echo \"DISTRIB_REVISION='R24.5.5'\" >> /etc/openwrt_release" >> /tmp/release
@@ -88,7 +84,7 @@ sed -i "s/timestamp/Built on '$(TZ=Asia/Shanghai date +%Y-%m-%d -d +"5"hours)' b
 # Change Argon Theme
 # rm -rf ./package/lean/luci-theme-argon 
 rm -rf ./feeds/luci/themes/luci-theme-argon
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./package/luci-theme-argon
+git clone https://github.com/jerrykuku/luci-theme-argon.git ./package/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/luci-app-argon-config
 
 # Change default BackGround img
@@ -112,24 +108,8 @@ sed -i 's/bootstrap/argon/g' feeds/luci/collections/luci/Makefile
 # Modify default IP
 # sed -i 's/192.168.1.1/192.168.100.1/g' package/base-files/files/bin/config_generate
 # Modify default Hostname
-# sed -i 's/OpenWrt/Openwrtx86/g' package/base-files/files/bin/config_generate
+sed -i 's/ImmortalWrt/Z-ImmortalWrt/g' package/base-files/files/bin/config_generate
 
-# Remove the default apps
-sed -i 's/luci-app-zerotier //g' target/linux/x86/Makefile
-sed -i 's/luci-app-unblockmusic //g' target/linux/x86/Makefile
-sed -i 's/luci-app-xlnetacc //g' target/linux/x86/Makefile
-sed -i 's/luci-app-jd-dailybonus //g' target/linux/x86/Makefile
-sed -i 's/luci-app-ipsec-vpnd //g' target/linux/x86/Makefile
-sed -i 's/luci-app-adbyby-plus //g' target/linux/x86/Makefile
-sed -i 's/luci-app-qbittorrent //g' target/linux/x86/Makefile
-sed -i 's/luci-app-dockerman //g' target/linux/x86/Makefile
-# sed -i 's/luci-app-sfe //g' target/linux/x86/Makefile
-sed -i 's/luci-app-uugamebooster//g' target/linux/x86/Makefile
-# sed -i 's/-luci-app-flowoffload//g' target/linux/x86/Makefile
-# sed -i 's/kmod-drm-amdgpu \\/kmod-drm-amdgpu/g' target/linux/x86/Makefile
-sed -e '/luci-app-filetransfer/d' include/target.mk
-sed -e '/luci-app-vlmcsd/d' include/target.mk
-sed -e '/luci-app-flowoffload/d' include/target.mk
 # Re-enable SFE for 5.10
 # sed -i 's/@!LINUX_5_10 //g' package/lean/luci-app-sfe/Makefile
 
