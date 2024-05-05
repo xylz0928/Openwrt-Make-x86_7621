@@ -28,8 +28,18 @@ sed -i "s/echo 'iptables/echo '# iptables/g" ./package/lean/default-settings/fil
 sed -i "s/echo '\[ -n/echo '# \[ -n/g" ./package/lean/default-settings/files/zzz-default-settings
 
 # 修改版本号-webui
+echo "sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release" >> /tmp/release
+echo "echo \"DISTRIB_REVISION='R24.5.5'\" >> /etc/openwrt_release" >> /tmp/release
+echo "sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release" >> /tmp/release
+echo "echo \"DISTRIB_DESCRIPTION='ImmortalWRT '\" >> /etc/openwrt_release" >> /tmp/release
+echo "exit 0" >> /tmp/release
+
+sed -i '/exit 0/d' ./package/emortal/default-settings/files/99-default-settings
+cat /tmp/release >> ./package/emortal/default-settings/files/99-default-settings
+
+
 modelmark=R`TZ=Asia/Shanghai date +%Y-%m-%d -d +"5"hours`' by xylz0928'
-sed -i "s/DISTRIB_REVISION='R[0-9]*\.[0-9]*\.[0-9]*/DISTRIB_REVISION='$modelmark/g" ./package/lean/default-settings/files/zzz-default-settings
+sed -i "s/DISTRIB_REVISION='R[0-9]*\.[0-9]*\.[0-9]*/DISTRIB_REVISION='$modelmark/g" ./package/emortal/default-settings/files/99-default-settings
 # sed -i 's/$(VERSION_DIST_SANITIZED)/$(VERSION_DIST_SANITIZED)-${modelmark}/g' include/image.mk
 # sed -i 's/$(VERSION_DIST_SANITIZED)/$(VERSION_DIST_SANITIZED)-$(shell TZ=UTC-8 date +%Y.%m.%d)_By_xylz0928/g' include/image.mk
 # echo "DISTRIB_REVISION='${modelmark}'" > ./package/base-files/files/etc/openwrt_release
@@ -47,37 +57,16 @@ echo "    ▞  ▚   ▚   ▚    █ █    █      █   █  █████
 echo "  ▞▞▞  ▚▚▚ ▚▚▚ ▚▚▚ ▟  ██████      █████        ██     " >> /tmp/mark
 echo "                                               ██     " >> /tmp/mark
 echo " -----------------------------------------------------" >> /tmp/mark
-echo "     _________       _    ___ ___  ___                " >> /tmp/mark
-echo "    /        /\     | |  | __|   \| __|               " >> /tmp/mark
-echo "   /  LE    /  \    | |__| _|| |) | _|                " >> /tmp/mark
-echo "  /    DE  /    \   |____|___|___/|___|               " >> /tmp/mark
-echo " /________/  LE  \                                    " >> /tmp/mark
-echo " \        \   DE / -----------------------------------" >> /tmp/mark
-echo "  \    LE  \    /  %D %V, %C                          " >> /tmp/mark
-echo "   \  DE    \  /   timestamp                          " >> /tmp/mark
-echo "    \________\/    -----------------------------------" >> /tmp/mark
+echo " .___                               __         .__    " >> /tmp/mark
+echo " |   | _____   _____   ____________/  |______  |  |   " >> /tmp/mark
+echo " |   |/     \ /     \ /  _ \_  __ \   __\__  \ |  |   " >> /tmp/mark
+echo " |   |  Y Y  \  Y Y  (  <_> )  | \/|  |  / __ \|  |__ " >> /tmp/mark
+echo " |___|__|_|  /__|_|  /\____/|__|   |__| (____  /____/ " >> /tmp/mark
+echo "           \/      \/  BE FREE AND UNAFRAID  \/       " >> /tmp/mark
+echo " -----------------------------------------------------" >> /tmp/mark
+echo "  %D %V, %C                                           " >> /tmp/mark
+echo " -----------------------------------------------------" >> /tmp/mark
 
-# echo "      █      █  ▚           ▟               █         " >> /tmp/mark
-# echo "     █████   █      █████████     █        █████████  " >> /tmp/mark
-# echo "    █ ▃ ██ ██████   ██            █        █   ██     " >> /tmp/mark
-# echo "  ██ ▃ ██   █ █     █████████     ██████ ██ ████████  " >> /tmp/mark
-# echo "     ██    █   █    █ ██████  ███▟          █  ██     " >> /tmp/mark
-# echo "   ██     █     ██  █ █    █      █         █  ██     " >> /tmp/mark
-# echo "    ▞  ▚   ▚   ▚    █ █    █      █   █  ████████████ " >> /tmp/mark
-# echo "  ▞▞▞  ▚▚▚ ▚▚▚ ▚▚▚ ▟  ██████      █████        ██     " >> /tmp/mark
-# echo "                                               ██     " >> /tmp/mark
-# echo " -----------------------------------------------------" >> /tmp/mark
-
-# echo "    @:     @L                                 @          " >> /tmp/mark
-# echo "    @@,,L. @0@@.     @@@@@@@@t     @L        @@;;;;;;f1  " >> /tmp/mark
-# echo "  ;@@8 @@  @t :.     @;            @f        @@   @@     " >> /tmp/mark
-# echo ",@@G G@@  @@@        @@00000@@,    @L8@@C  @0 CCC@@CC01  " >> /tmp/mark
-# echo "    @@@  @@ @@       @ L1;;fi   @@@f          8@  @@     " >> /tmp/mark
-# echo "  @@@  G@@   0@@@   @@ @@   @,     @f         8@  @@     " >> /tmp/mark
-# echo "   @@ L@ @@  @@    ,@8 @@   @.     @f   @t :Liiiii@@iiiG " >> /tmp/mark
-# echo "  @@, 0@, @@  @@G @@@  @@@@@@;     @@@@@1         @@     " >> /tmp/mark
-# echo " ;                                                tt     " >> /tmp/mark
-# echo " -----------------------------------------------------" >> /tmp/mark
 
 # sed -i '1,5d' ./package/base-files/files/etc/banner
 # sed -i '1r /tmp/mark' ./package/base-files/files/etc/banner
