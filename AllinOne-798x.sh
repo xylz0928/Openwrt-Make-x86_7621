@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 cd ~
-git clone https://github.com/coolsnowwolf/lede
-cd lede
+git clone https://github.com/hanwckf/immortalwrt-mt798x
+cd immortalwrt-mt798x
 wget https://github.com/xylz0928/Openwrt-Make-x86_7621/raw/main/diy-x86-part1.sh && \
 wget https://github.com/xylz0928/Openwrt-Make-x86_7621/raw/main/diy-hanwckf-part2.sh && \
-wget https://github.com/xylz0928/Openwrt-Make-x86_7621/raw/main/MakeMenu.x86.config
+wget https://github.com/xylz0928/Openwrt-Make-x86_7621/raw/main/MakeMenu.360T7_108M.config
 bash diy-x86-part1.sh && \
 ./scripts/feeds update -a && ./scripts/feeds install -a && \
 bash diy-hanwckf-part2.sh
