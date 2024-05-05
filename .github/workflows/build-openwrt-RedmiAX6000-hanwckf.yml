@@ -40,9 +40,9 @@ env:
   ftp_psw: ${{ secrets.FTP_PSW }}
   ftp_ip: ${{ secrets.FTP_IP }}
   TargetPath: OpenwrtImgs/mt7986/RedmiAX6000
-  upload_file_1: openwrt-mediatek-filogic-xiaomi_redmi-router-ax6000-initramfs-kernel.bin
-  upload_file_2: openwrt-mediatek-filogic-xiaomi_redmi-router-ax6000-squashfs-factory.bin
-  upload_file_3: openwrt-mediatek-filogic-xiaomi_redmi-router-ax6000-squashfs-sysupgrade.bin
+  upload_file_1: immortalwrt-mediatek-mt7986-xiaomi_redmi-router-ax6000-initramfs-kernel.bin
+  upload_file_2: immortalwrt-mediatek-mt7986-xiaomi_redmi-router-ax6000-squashfs-factory.bin
+  upload_file_3: immortalwrt-mediatek-mt7986-xiaomi_redmi-router-ax6000-squashfs-sysupgrade.bin
   upload_file_4: sha256sums
   whkey: ${{ secrets.WEBHOOK }}
 
