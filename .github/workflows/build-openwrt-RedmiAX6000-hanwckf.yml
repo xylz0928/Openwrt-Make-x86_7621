@@ -22,7 +22,7 @@ on:
     - cron: 0 14 * * 5
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   model: RedmiAX6000-hanwckf
