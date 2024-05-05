@@ -132,7 +132,7 @@ git clone https://github.com/rufengsuixing/luci-app-onliner.git package/luci-app
 rm -rf ./feeds/luci/applications/luci-app-pushbot
 # Add PushBot
 git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
-
+git clone https://github.com/brvphoenix/wrtbwmon package/wrtbwmon
 
 # Add Hello World VSSR
 # svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  package/diy/luci-app-vssr
