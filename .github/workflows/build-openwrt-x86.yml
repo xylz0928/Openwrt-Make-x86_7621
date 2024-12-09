@@ -1,4 +1,4 @@
-#
+       #
 # Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
 #
 # This is free software, licensed under the MIT License.
@@ -108,7 +108,6 @@ jobs:
         sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
         sudo -E apt-mark hold grub-efi-amd64-signed
         sudo -E apt update
-        sudo -E apt -y purge azure-cli* docker* ghc* zulu* llvm* firefox google* dotnet* powershell* openjdk* mysql* php* mongodb* dotnet* snap*
         sudo -E apt -y full-upgrade
         sudo -E apt -y install ack antlr3 aria2 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 \
         ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib git gperf haveged help2man \
