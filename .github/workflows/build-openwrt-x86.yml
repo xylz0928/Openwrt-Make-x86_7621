@@ -105,8 +105,6 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        export LC_ALL="en_US.UTF-8"
-        sudo dpkg-reconfigure locales
         sudo -E apt-get -qq update
         sudo -E apt-get -qq install --reinstall tex-common
         sudo -E apt-get -qq install ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
