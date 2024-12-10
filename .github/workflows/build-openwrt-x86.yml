@@ -72,8 +72,8 @@ jobs:
         docker_include: ".+"
         docker_prune: "True"
         docker_clean: "True"
-        apt_prune: "True"
-        apt_clean: "True"
+        apt_prune: "False"
+        apt_clean: "False"
         homebrew_prune: "True"
         homebrew_clean: "True"
         npm_prune: "True"
@@ -120,12 +120,6 @@ jobs:
         /usr/local/share/powershell /usr/local/share/chromium /usr/local/lib/node_modules
         sudo timedatectl set-timezone "$TZ"
         sudo chown $USER:$GROUPS $GITHUB_WORKSPACE
-
-    - name: SSH connection to Actions2
-      uses: P3TERX/ssh2actions@v1.0.0
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
     - name: Clone source code
       working-directory: ./
