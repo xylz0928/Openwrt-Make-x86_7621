@@ -115,8 +115,8 @@ jobs:
         vim wget xmlto xxd zlib1g-dev python3-setuptools llvm clang
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
-        export CC=gcc-10
-        export CXX=g++-10
+        sudo -E update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
+        sudo -E update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
         sudo rm -rf /etc/apt/sources.list.d/* /usr/local/lib/android /opt/ghc /usr/share/dotnet /usr/local/graalvm /usr/local/.ghcup \
         /usr/local/share/powershell /usr/local/share/chromium /usr/local/lib/node_modules
         sudo timedatectl set-timezone "$TZ"
