@@ -105,6 +105,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        sudo -E add-apt-repository ppa:ubuntu-toolchain-r/test
         sudo -E apt-get -qq update
         sudo -E apt-get -qq install ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
         bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-13 g++-13 gcc-multilib g++-multilib \
@@ -115,6 +116,10 @@ jobs:
         vim wget xmlto xxd zlib1g-dev python3-setuptools llvm clang
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
+        sudo -E update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100
+        sudo -E update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
+        sudo -E update-alternatives --config gcc
+        sudo -E update-alternatives --config g++
         sudo rm -rf /etc/apt/sources.list.d/* /usr/local/lib/android /opt/ghc /usr/share/dotnet /usr/local/graalvm /usr/local/.ghcup \
         /usr/local/share/powershell /usr/local/share/chromium /usr/local/lib/node_modules
         sudo timedatectl set-timezone "$TZ"
