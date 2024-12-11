@@ -151,6 +151,7 @@ sed -e '/luci-app-flowoffload/d' include/target.mk
 git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
 # Dependencies
 git clone https://github.com/brvphoenix/wrtbwmon package/wrtbwmon
+git clone https://github.com/brvphoenix/luci-app-wrtbwmon package/luci-app-wrtbwmon
 # Add Onliner
 # git clone https://github.com/rufengsuixing/luci-app-onliner.git feeds/luci/applications/luci-app-onliner
 git clone https://github.com/rufengsuixing/luci-app-onliner.git package/luci-app-onliner
