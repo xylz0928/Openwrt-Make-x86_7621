@@ -304,17 +304,15 @@ git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-p
 # svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass ./package/luci-app-bypass
 # chmod -R 755 ./package/luci-app-bypass/*
 
-svn co https://github.com/haiibo/openwrt-packages/trunk/luci-app-bypass ./package/luci-app-bypass
-chmod -R 755 ./package/luci-app-bypass/*
-
-# mkdir package/luci-app-bypass
-# cd package/luci-app-bypass
-# git init
+mkdir package/luci-app-bypass
+cd package/luci-app-bypass
+git init
+git remote add -f origin https://github.com/haiibo/openwrt-packages
 # git remote add -f origin https://github.com/kiddin9/openwrt-packages
-# git config core.sparseCheckout true
-# echo "luci-app-bypass" >> .git/info/sparse-checkout
-# git pull origin master
-# cd ../../
+git config core.sparseCheckout true
+echo "luci-app-bypass" >> .git/info/sparse-checkout
+git pull origin master
+cd ../../
 
 # Add OpenClash
 # git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
