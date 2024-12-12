@@ -177,19 +177,19 @@ git clone https://github.com/OpenWrt-Actions/luci-app-vssr.git package/luci-app-
 
 # Add Hello World SSR Plus+
 git clone -b main https://github.com/fw876/helloworld.git package/helloworld
-rm -rf ./package/helloworld/shadowsocksr-libev
+# rm -rf ./package/helloworld/shadowsocksr-libev
 
-mkdir package/tmp_helloworld
-mkdir package/tmp_helloworld/shadowsocksr-libev
-cd package/tmp_helloworld/shadowsocksr-libev
-git init
-git remote add -f origin https://github.com/sbwml/openwrt_helloworld
-git config core.sparseCheckout true
-echo "shadowsocksr-libev" >> .git/info/sparse-checkout
-git pull origin v5
-cd ../../../
-mv ./package/tmp_helloworld/shadowsocksr-libev/shadowsocksr-libev ./package/helloworld/shadowsocksr-libev
-rm -rf ./package/tmp_helloworld
+# mkdir package/tmp_helloworld
+# mkdir package/tmp_helloworld/shadowsocksr-libev
+# cd package/tmp_helloworld/shadowsocksr-libev
+# git init
+# git remote add -f origin https://github.com/sbwml/openwrt_helloworld
+# git config core.sparseCheckout true
+# echo "shadowsocksr-libev" >> .git/info/sparse-checkout
+# git pull origin v5
+# cd ../../../
+# mv ./package/tmp_helloworld/shadowsocksr-libev/shadowsocksr-libev ./package/helloworld/shadowsocksr-libev
+# rm -rf ./package/tmp_helloworld
 
 # git lua-maxminddb 依赖
 git clone https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
