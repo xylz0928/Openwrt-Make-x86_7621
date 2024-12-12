@@ -59,21 +59,6 @@ jobs:
         df -hT
         echo "=============================================================================="
 
-    - name: "Optimize Disk Space"
-      uses: "hugoalh/disk-space-optimizer-ghaction@v0.8.1"
-      with:
-        operate_sudo: "True"
-        docker_include: ".+"
-        docker_prune: "True"
-        docker_clean: "True"
-        apt_prune: "False"
-        apt_clean: "False"
-        homebrew_prune: "True"
-        homebrew_clean: "True"
-        npm_prune: "False"
-        npm_clean: "False"
-        os_swap: "True"
-
     - name: Freeing up disk space
       uses: easimon/maximize-build-space@master
       with: 
