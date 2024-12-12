@@ -128,16 +128,16 @@ sed -i 's/bootstrap/argon/g' feeds/luci/collections/luci/Makefile
 # sed -i 's/OpenWrt/Openwrtx86/g' package/base-files/files/bin/config_generate
 
 # Remove the default apps
-sed -i 's/luci-app-zerotier //g' target/linux/x86/Makefile
-sed -i 's/luci-app-unblockmusic //g' target/linux/x86/Makefile
-sed -i 's/luci-app-xlnetacc //g' target/linux/x86/Makefile
-sed -i 's/luci-app-jd-dailybonus //g' target/linux/x86/Makefile
-sed -i 's/luci-app-ipsec-vpnd //g' target/linux/x86/Makefile
-sed -i 's/luci-app-adbyby-plus //g' target/linux/x86/Makefile
-sed -i 's/luci-app-qbittorrent //g' target/linux/x86/Makefile
-sed -i 's/luci-app-dockerman //g' target/linux/x86/Makefile
+sed -i 's/luci-app-arpbind //g' include/target.mk
+sed -i 's/luci-app-filetransfer //g' include/target.mk
+sed -i 's/luci-app-vsftpd //g' include/target.mk
+sed -i 's/luci-app-ssr-plus //g' include/target.mk
+sed -i 's/luci-app-vlmcsd //g' include/target.mk
+sed -i 's/luci-app-accesscontrol //g' include/target.mk
+sed -i 's/luci-app-nlbwmon //g' include/target.mk
+sed -i 's/luci-app-turboacc //g' include/target.mk
 # sed -i 's/luci-app-sfe //g' target/linux/x86/Makefile
-sed -i 's/luci-app-uugamebooster//g' target/linux/x86/Makefile
+sed -i 's/luci-app-wol//g' target/linux/x86/Makefile
 # sed -i 's/-luci-app-flowoffload//g' target/linux/x86/Makefile
 # sed -i 's/kmod-drm-amdgpu \\/kmod-drm-amdgpu/g' target/linux/x86/Makefile
 sed -e '/luci-app-filetransfer/d' include/target.mk
