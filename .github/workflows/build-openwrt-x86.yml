@@ -83,7 +83,7 @@ jobs:
     - name: Freeing up disk space
       uses: easimon/maximize-build-space@master
       with: 
-        root-reserve-mb: 2048
+        root-reserve-mb: 3072
         swap-size-mb: 1
         remove-dotnet: 'true'
         remove-android: 'true'
