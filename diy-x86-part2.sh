@@ -189,7 +189,7 @@ echo "shadowsocksr-libev" >> .git/info/sparse-checkout
 git pull origin v5
 cd ../../../
 mv ./package/tmp_helloworld/shadowsocksr-libev/shadowsocksr-libev ./package/helloworld/shadowsocksr-libev
-rm -rf ./package/tmp_helloworld/shadowsocksr-libev
+rm -rf ./package/tmp_helloworld
 
 # git lua-maxminddb 依赖
 git clone https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
