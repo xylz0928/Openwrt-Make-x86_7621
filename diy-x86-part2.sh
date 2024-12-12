@@ -179,6 +179,7 @@ git clone https://github.com/OpenWrt-Actions/luci-app-vssr.git package/luci-app-
 git clone -b main https://github.com/fw876/helloworld.git package/helloworld
 rm -rf ./package/helloworld/shadowsocksr-libev
 
+mkdir package/tmp_helloworld
 mkdir package/tmp_helloworld/shadowsocksr-libev
 cd package/tmp_helloworld/shadowsocksr-libev
 git init
