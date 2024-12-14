@@ -117,6 +117,8 @@ sed -i 's/ImmortalWrt/Z-ImmortalWrt/g' package/base-files/files/bin/config_gener
 # Add ServerChan
 # git clone https://github.com/tty228/luci-app-serverchan.git feeds/luci/applications/luci-app-serverchan
 git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
+git clone https://github.com/brvphoenix/wrtbwmon package/wrtbwmon
+git clone https://github.com/brvphoenix/luci-app-wrtbwmon package/luci-app-wrtbwmon
 
 # Add Onliner
 # git clone https://github.com/rufengsuixing/luci-app-onliner.git feeds/luci/applications/luci-app-onliner
@@ -270,11 +272,11 @@ git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-p
 # Add ByPass
 # svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass ./package/luci-app-bypass
 # chmod -R 755 ./package/luci-app-bypass/*
-
 mkdir package/luci-app-bypass
 cd package/luci-app-bypass
 git init
-git remote add -f origin https://github.com/kiddin9/openwrt-packages
+git remote add -f origin https://github.com/haiibo/openwrt-packages
+# git remote add -f origin https://github.com/kiddin9/openwrt-packages
 git config core.sparseCheckout true
 echo "luci-app-bypass" >> .git/info/sparse-checkout
 git pull origin master
