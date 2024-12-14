@@ -117,6 +117,28 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo chown $USER:$GROUPS $GITHUB_WORKSPACE
 
+    - name: Switch GCC and GXX Version
+      run: |
+        echo "Check current gcc/g++ Version Before Switch"
+        echo "------------GCC/GXX------------"
+        gcc --version
+        g++ --version
+        echo "Install gcc/g++ Version 12"
+        echo "------------GCC/GXX------------"
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq install gcc-12 g++-12
+        echo "Switch gcc/g++ Version to 12"
+        echo "------------GCC/GXX------------"
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 50
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 50
+        sudo update-alternatives --set gcc /usr/bin/gcc-12
+        sudo update-alternatives --set g++ /usr/bin/g++-12
+        echo "Check current gcc/g++ Version After Switch"
+        echo "------------GCC/GXX------------"
+        gcc --version
+        g++ --version
+        
+
     - name: Clone source code
       working-directory: ./
       run: |
