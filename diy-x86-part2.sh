@@ -230,29 +230,31 @@ git clone https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwa
 
 
 # Add ADGuardHome
+git clone https://github.com/xiaoxiao29/luci-app-adguardhome package/luci-app-adguardhome
 # git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./package/luci-app-adguardhome
 # chmod -R 755 ./package/luci-app-adguardhome/*
-mkdir package/luci-app-adguardhome
-cd package/luci-app-adguardhome
-git init
-git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
-git config core.sparseCheckout true
-echo "luci-app-adguardhome" >> .git/info/sparse-checkout
-git pull origin main
-cd ../../
+
+# mkdir package/luci-app-adguardhome
+# cd package/luci-app-adguardhome
+# git init
+# git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
+# git config core.sparseCheckout true
+# echo "luci-app-adguardhome" >> .git/info/sparse-checkout
+# git pull origin main
+# cd ../../
 
 #svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./package/adguardhome
 # sed -i 's/        /	/g' ./package/adguardhome/Makefile
 #chmod -R 755 ./package/adguardhome/*
-mkdir package/adguardhome
-cd package/adguardhome
-git init
-git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
-git config core.sparseCheckout true
-echo "adguardhome" >> .git/info/sparse-checkout
-git pull origin main
-cd ../../
+# mkdir package/adguardhome
+# cd package/adguardhome
+# git init
+# git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
+# git config core.sparseCheckout true
+# echo "adguardhome" >> .git/info/sparse-checkout
+# git pull origin main
+# cd ../../
 
 # Add WOL Plus
 # svn co https://github.com/sundaqiang/openwrt-packages/trunk/luci-app-wolplus ./package/luci-app-wolplus
@@ -278,27 +280,29 @@ git clone https://github.com/godros/luci-app-godproxy.git package/luci-app-godpr
 # svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-socat ./package/luci-app-socat
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./package/luci-app-socat
 # chmod -R 755 ./package/luci-app-socat/*
-mkdir package/luci-app-socat
-cd package/luci-app-socat
-git init
-git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
-git config core.sparseCheckout true
-echo "luci-app-socat" >> .git/info/sparse-checkout
-git pull origin main
-cd ../../
+
+# mkdir package/luci-app-socat
+# cd package/luci-app-socat
+# git init
+# git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
+# git config core.sparseCheckout true
+# echo "luci-app-socat" >> .git/info/sparse-checkout
+# git pull origin main
+# cd ../../
+git clone https://github.com/chenmozhijin/luci-app-socat package/luci-app-socat
 
 # Add luci-app-advanced
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-advanced ./package/luci-app-advanced
 # chmod -R 755 ./package/luci-app-advanced/*
-mkdir package/luci-app-advanced
-cd package/luci-app-advanced
-git init
-git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
-git config core.sparseCheckout true
-echo "luci-app-advanced" >> .git/info/sparse-checkout
-git pull origin main
-cd ../../
-
+# mkdir package/luci-app-advanced
+# cd package/luci-app-advanced
+# git init
+# git remote add -f origin https://github.com/sirpdboy/sirpdboy-package
+# git config core.sparseCheckout true
+# echo "luci-app-advanced" >> .git/info/sparse-checkout
+# git pull origin main
+# cd ../../
+git clone https://github.com/sirpdboy/luci-app-advanced package/luci-app-advanced
 
 # Add SmartDNS
 # rm -rf ./feeds/packages/net/smartdns
