@@ -87,9 +87,9 @@ jobs:
         eval "$send_dingding \"${send_content1}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#6A65FF>${send_content1}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
         
         cd /tmp
-        wget https://www.7ze.top/wp-content/uploads/2022/03/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E6%9E%B6%E6%9E%841-scaled.jpg
+        wget https://static.z.7ze.top:20443/files/1.jpg
         echo $ftp_psw > /tmp/rsync.psw && chmod 600 /tmp/rsync.psw
-        rsync -avrzP 家庭网络拓扑架构1-scaled.jpg $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
+        rsync -avrzP 1.jpg $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
         echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
         
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
