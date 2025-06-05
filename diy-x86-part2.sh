@@ -128,21 +128,21 @@ sed -i 's/bootstrap/argon/g' feeds/luci/collections/luci/Makefile
 # sed -i 's/OpenWrt/Openwrtx86/g' package/base-files/files/bin/config_generate
 
 # Remove the default apps
-sed -i 's/luci-app-arpbind //g' include/target.mk
-sed -i 's/luci-app-filetransfer //g' include/target.mk
-sed -i 's/luci-app-vsftpd //g' include/target.mk
-sed -i 's/luci-app-ssr-plus //g' include/target.mk
-sed -i 's/luci-app-vlmcsd //g' include/target.mk
-sed -i 's/luci-app-accesscontrol //g' include/target.mk
-sed -i 's/luci-app-nlbwmon //g' include/target.mk
-sed -i 's/luci-app-turboacc //g' include/target.mk
+sed -i 's/luci-app-arpbind //g' include/target.mk >/dev/null 2>&1
+sed -i 's/luci-app-filetransfer //g' include/target.mk >/dev/null 2>&1
+sed -i 's/luci-app-vsftpd //g' include/target.mk >/dev/null 2>&1
+sed -i 's/luci-app-ssr-plus //g' include/target.mk >/dev/null 2>&1
+sed -i 's/luci-app-vlmcsd //g' include/target.mk >/dev/null 2>&1
+sed -i 's/luci-app-accesscontrol //g' include/target.mk >/dev/null 2>&1
+sed -i 's/luci-app-nlbwmon //g' include/target.mk >/dev/null 2>&1
+sed -i 's/luci-app-turboacc //g' include/target.mk >/dev/null 2>&1
 # sed -i 's/luci-app-sfe //g' target/linux/x86/Makefile
-sed -i 's/luci-app-wol //g' include/target.mk
+sed -i 's/luci-app-wol //g' include/target.mk >/dev/null 2>&1
 # sed -i 's/-luci-app-flowoffload//g' target/linux/x86/Makefile
 # sed -i 's/kmod-drm-amdgpu \\/kmod-drm-amdgpu/g' target/linux/x86/Makefile
-sed -e '/luci-app-filetransfer/d' include/target.mk
-sed -e '/luci-app-vlmcsd/d' include/target.mk
-sed -e '/luci-app-flowoffload/d' include/target.mk
+sed -e '/luci-app-filetransfer/d' include/target.mk >/dev/null 2>&1
+sed -e '/luci-app-vlmcsd/d' include/target.mk >/dev/null 2>&1
+sed -e '/luci-app-flowoffload/d' include/target.mk >/dev/null 2>&1
 # Re-enable SFE for 5.10
 # sed -i 's/@!LINUX_5_10 //g' package/lean/luci-app-sfe/Makefile
 
