@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-x86-TestKernel
+name: Build Build OpenWrt-x86-TestKernel
 
 on:
   repository_dispatch:
@@ -38,7 +38,7 @@ env:
   ftp_username: ${{ secrets.FTP_USERNAME }}
   ftp_psw: ${{ secrets.FTP_PSW }}
   ftp_ip: ${{ secrets.FTP_IP }}
-  TargetPath: OpenwrtImgs/x86_64/x64-TestKernel
+  TargetPath: OpenwrtImgs/x86_64/x64
   upload_file_1: openwrt-x86-64-generic-squashfs-combined-efi.img.gz
   upload_file_2: openwrt-x86-64-generic-squashfs-combined-efi.qcow2
   # upload_file_2: openwrt-x86-64-generic-squashfs-combined.img.gz
@@ -119,7 +119,7 @@ jobs:
     - name: Switch GCC/GXX Version
       uses: xylz0928/SwitchUbuntuGccGxxVersion@v1.0.7
       with:
-        TargetVer: '12'
+        TargetVer: '10'
 
     - name: Clone source code
       working-directory: ./
@@ -263,7 +263,7 @@ jobs:
         
         cd openwrt/bin/targets/*/*
         echo $ftp_psw > /tmp/rsync.psw && chmod 600 /tmp/rsync.psw
-        rsync -avrzP $upload_file_1 $upload_file_2 $upload_file_3 $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
+        rsync -avrzP $upload_file_1 $upload_file_2 $upload_file_3 $ftp_username@$ftp_ip::$TargetPath/TestKernel-$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
         echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
         
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
