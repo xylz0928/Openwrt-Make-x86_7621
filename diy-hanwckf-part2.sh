@@ -290,6 +290,12 @@ echo "luci-app-bypass" >> .git/info/sparse-checkout
 git pull origin master
 cd ../../
 
+# Add Nikki
+git clone https://github.com/nikkinikki-org/OpenWrt-nikki.git package/OpenWrt-nikki
+
+# Add luci-app-netspeedtest
+git clone https://github.com/sirpdboy/luci-app-netspeedtest package/luci-app-netspeedtest
+
 # Add OpenClash
 # git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
 # svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/luci-app-openclash
