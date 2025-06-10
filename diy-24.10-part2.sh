@@ -24,8 +24,8 @@
 sed -i 's/invalid/# invalid/g' package/network/services/samba36/files/smb.conf.template
 
 # 修改版本号-webui
-echo "sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release" >> /tmp/release
-echo "echo \"DISTRIB_REVISION='R24.5.5'\" >> /etc/openwrt_release" >> /tmp/release
+echo "sed -i '/DISTRIB_RELEASE/d' /etc/openwrt_release" >> /tmp/release
+echo "echo \"DISTRIB_RELEASE='R24.5.5'\" >> /etc/openwrt_release" >> /tmp/release
 echo "sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release" >> /tmp/release
 echo "echo \"DISTRIB_DESCRIPTION='ImmortalWRT '\" >> /etc/openwrt_release" >> /tmp/release
 echo "exit 0" >> /tmp/release
@@ -35,7 +35,7 @@ cat /tmp/release >> ./package/emortal/default-settings/files/99-default-settings
 
 
 modelmark=R`TZ=Asia/Shanghai date +%Y-%m-%d -d +"5"hours`' by xylz0928'
-sed -i "s/DISTRIB_REVISION='R[0-9]*\.[0-9]*\.[0-9]*/DISTRIB_REVISION='$modelmark/g" ./package/emortal/default-settings/files/99-default-settings
+sed -i "s/DISTRIB_RELEASE='R[0-9]*\.[0-9]*\.[0-9]*/DISTRIB_RELEASE='$modelmark/g" ./package/emortal/default-settings/files/99-default-settings
 sed -i "s/ImmortalWRT /ImmortalWRT $modelmark/g" ./package/emortal/default-settings/files/99-default-settings
 # sed -i 's/$(VERSION_DIST_SANITIZED)/$(VERSION_DIST_SANITIZED)-${modelmark}/g' include/image.mk
 # sed -i 's/$(VERSION_DIST_SANITIZED)/$(VERSION_DIST_SANITIZED)-$(shell TZ=UTC-8 date +%Y.%m.%d)_By_xylz0928/g' include/image.mk
