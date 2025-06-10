@@ -147,6 +147,7 @@ git clone https://github.com/brvphoenix/wrtbwmon package/wrtbwmon
 # svn co https://github.com/siropboy/luci-app-vssr-plus/trunk/luci-app-vssr-plus package/new/luci-app-vssr-plus
 # svn co https://github.com/ysx88/openwrt-packages/trunk/luci-app-vssr package/luci-app-vssr
 git clone https://github.com/OpenWrt-Actions/luci-app-vssr.git package/luci-app-vssr
+git clone https://github.com/op4packages/pdnsd-alt package/pdnsd-alt
 
 # Add Hello World SSR Plus+
 git clone -b main https://github.com/fw876/helloworld.git package/helloworld
@@ -203,7 +204,7 @@ git clone https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwa
 git clone https://github.com/xiaoxiao29/luci-app-adguardhome package/luci-app-adguardhome
 
 #svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./package/adguardhome
-# sed -i 's/        /	/g' ./package/adguardhome/Makefile
+# sed -i 's/        /   /g' ./package/adguardhome/Makefile
 #chmod -R 755 ./package/adguardhome/*
 # mkdir package/adguardhome
 # cd package/adguardhome
