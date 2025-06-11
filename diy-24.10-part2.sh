@@ -120,9 +120,11 @@ sed -i 's/ImmortalWrt/Z-ImmortalWrt/g' package/base-files/files/bin/config_gener
 # Add ServerChan
 # git clone https://github.com/tty228/luci-app-serverchan.git feeds/luci/applications/luci-app-serverchan
 # git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
-git clone https://github.com/tty228/luci-app-wechatpush.git package/luci-app-wechatpush
+
+#### git clone https://github.com/tty228/luci-app-wechatpush.git package/luci-app-wechatpush
+
 # Dependencies
-git clone https://github.com/brvphoenix/wrtbwmon package/wrtbwmon
+# git clone https://github.com/brvphoenix/wrtbwmon package/wrtbwmon
 git clone https://github.com/brvphoenix/luci-app-wrtbwmon package/luci-app-wrtbwmon
 
 # Add DDNS-Aliyun
@@ -162,11 +164,11 @@ git clone https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxmin
 
 # Add Passwall
 # Dependencies
-git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
+# git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
 #Passwall
-git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
+# git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
 #Passwall2
-git clone https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
+# git clone https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 # svn co https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 ./package/luci-app-passwall2
 # chmod -R 755 ./package/luci-app-passwall2/*
 # rm -rf ./package/openwrt-passwall/v2ray-*
@@ -236,7 +238,7 @@ cd ../../
 # chmod -R 755 ./package/luci-app-koolproxyR/*
 
 # Add GodProxy
-git clone https://github.com/godros/luci-app-godproxy.git package/luci-app-godproxy
+# git clone https://github.com/godros/luci-app-godproxy.git package/luci-app-godproxy
 
 # Add luci-app-socat
 # svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-socat ./package/luci-app-socat
@@ -275,7 +277,7 @@ git clone https://github.com/sirpdboy/luci-app-advanced package/luci-app-advance
 
 # Add Poweroff
 # git clone https://github.com/xylz0928/luci-app-shutdown package/luci-app-shutdown
-git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
+# git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 # curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 # curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 # chmod -R 755 ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
@@ -295,7 +297,7 @@ git pull origin master
 cd ../../
 
 # Add Nikki
-git clone https://github.com/nikkinikki-org/OpenWrt-nikki.git package/OpenWrt-nikki
+# git clone https://github.com/nikkinikki-org/OpenWrt-nikki.git package/OpenWrt-nikki
 
 # Add luci-app-netspeedtest
 git clone https://github.com/sirpdboy/luci-app-netspeedtest package/luci-app-netspeedtest
@@ -305,14 +307,14 @@ git clone https://github.com/sirpdboy/luci-app-netspeedtest package/luci-app-net
 # svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/luci-app-openclash
 # chmod -R 755 ./package/luci-app-openclash/*
 
-mkdir package/luci-app-openclash
-cd package/luci-app-openclash
-git init
-git remote add -f origin https://github.com/vernesong/OpenClash
-git config core.sparseCheckout true
-echo "luci-app-openclash" >> .git/info/sparse-checkout
-git pull origin master
-cd ../../
+# mkdir package/luci-app-openclash
+# cd package/luci-app-openclash
+# git init
+# git remote add -f origin https://github.com/vernesong/OpenClash
+# git config core.sparseCheckout true
+# echo "luci-app-openclash" >> .git/info/sparse-checkout
+# git pull origin master
+# cd ../../
 
 # Fix Multi-use on one physical port 
 # 修复 5.4.68-5.4.69内核 于 MIPS 架构 单线复用BUG
