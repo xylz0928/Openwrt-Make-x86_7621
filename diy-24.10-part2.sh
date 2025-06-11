@@ -28,6 +28,8 @@ echo "sed -i '/DISTRIB_RELEASE/d' /etc/openwrt_release" >> /tmp/release
 echo "echo \"DISTRIB_RELEASE='R24.5.5'\" >> /etc/openwrt_release" >> /tmp/release
 echo "sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release" >> /tmp/release
 echo "echo \"DISTRIB_DESCRIPTION='ImmortalWRT '\" >> /etc/openwrt_release" >> /tmp/release
+echo "echo \"OPENWRT_RELEASE='ImmortalWRT '\" >> /etc/os-release" >> /tmp/release
+echo "echo 'OPENWRT_RELEASE=\"ImmortalWRT \"' >> /etc/os-release" >> /tmp/release
 echo "exit 0" >> /tmp/release
 
 sed -i '/exit 0/d' ./package/emortal/default-settings/files/99-default-settings
@@ -62,6 +64,7 @@ echo " |___|__|_|  /__|_|  /\____/|__|   |__| (____  /____/ " >> /tmp/mark
 echo "           \/      \/  BE FREE AND UNAFRAID  \/       " >> /tmp/mark
 echo " -----------------------------------------------------" >> /tmp/mark
 echo "  %D %V, %C                                           " >> /tmp/mark
+echo "  timestamp                                           " >> /tmp/mark
 echo " -----------------------------------------------------" >> /tmp/mark
 
 
