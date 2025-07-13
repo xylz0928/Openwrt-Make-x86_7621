@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-360T7_108M-24.10
+name: Build OpenWrt-mt7981-24.10
 
 on:
   repository_dispatch:
@@ -22,11 +22,12 @@ on:
     - cron: 0 14 * * 5
 
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
+  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6
   REPO_BRANCH: 2410
   FEEDS_CONF: feeds.conf.default
   model: 360T7_108M-padavanonly
-  CONFIG_FILE: MakeMenu.360T7_108M.24.10.config
+  model2: cmcc_rax3000m-padavanonly
+  CONFIG_FILE: MakeMenu.mt7981.24.10.config
   DIY_P1_SH: diy-x86-part1.sh
   DIY_P2_SH: diy-24.10-part2.sh
   UPLOAD_BIN_DIR: false
@@ -40,10 +41,14 @@ env:
   ftp_psw: ${{ secrets.FTP_PSW }}
   ftp_ip: ${{ secrets.FTP_IP }}
   TargetPath: OpenwrtImgs/mt7981/360T7_108M-24.10
+  TargetPath2: OpenwrtImgs/mt7981/RAX3000M-EMMC
   upload_file_1: immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-initramfs-kernel.bin
   upload_file_2: immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-factory.bin
   upload_file_3: immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-sysupgrade.bin
-  upload_file_4: sha256sums
+  upload_file_4: immortalwrt-mediatek-mt7981-cmcc_rax3000m-emmc-initramfs-kernel.bin
+  upload_file_5: immortalwrt-mediatek-mt7981-cmcc_rax3000m-emmc-squashfs-factory.bin
+  upload_file_6: immortalwrt-mediatek-mt7981-cmcc_rax3000m-emmc-squashfs-sysupgrade.bin
+  upload_file_7: sha256sums
   whkey: ${{ secrets.WEBHOOK }}
 
 jobs:
@@ -237,6 +242,8 @@ jobs:
         send_dingding="curl -s \"https://oapi.dingtalk.com/robot/send?access_token=${whkey}\" -H 'Content-Type: application/json' -d '{\"msgtype\": \"markdown\",\"markdown\": {\"title\":"
         send_content1="【${model}】编译成功！正在上传固件到NAS..."
         send_content2="【${model}】编译成功！固件成功上传到NAS。"
+        send_content3="【${model2}】编译成功！正在上传固件到NAS..."
+        send_content4="【${model2}】编译成功！固件成功上传到NAS。"
         markdown_splitline="\n\n---\n\n"
         GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
@@ -244,17 +251,21 @@ jobs:
         
         cd openwrt/bin/targets/*/*
         echo $ftp_psw > /tmp/rsync.psw && chmod 600 /tmp/rsync.psw
-        rsync -avrzP $upload_file_1 $upload_file_2 $upload_file_3 $upload_file_4 $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
-        echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
-        
-        nowtime=`date "+%Y-%m-%d %H:%M:%S"`
+        rsync -avrzP $upload_file_1 $upload_file_2 $upload_file_3 $upload_file_7 $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
         eval "$send_dingding \"${send_content2}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content2}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
+
+        eval "$send_dingding \"${send_content3}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#6A65FF>${send_content3}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
+        rsync -avrzP $upload_file_4 $upload_file_5 $upload_file_6 $upload_file_7 $ftp_username@$ftp_ip::$TargetPath2/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
+        eval "$send_dingding \"${send_content4}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content4}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
+
+        echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
+        nowtime=`date "+%Y-%m-%d %H:%M:%S"`
 
     - name: Generate release tag
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$model-$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+        echo "release_tag=$model-and-$model2-$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
