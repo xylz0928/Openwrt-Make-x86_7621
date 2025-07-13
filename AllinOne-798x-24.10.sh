@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 cd ~
-git clone -b 2410 --single-branch --filter=blob:none https://github.com/padavanonly/immortalwrt-mt798x-24.10 immortalwrt-mt798x-24.10
+git clone -b 2410 --single-branch --filter=blob:none https://github.com/padavanonly/immortalwrt-mt798x-6.6 immortalwrt-mt798x-24.10
 cd immortalwrt-mt798x-24.10
 wget https://github.com/xylz0928/Openwrt-Make-x86_7621/raw/main/diy-x86-part1.sh && \
 wget https://github.com/xylz0928/Openwrt-Make-x86_7621/raw/main/diy-24.10-part2.sh && \
