@@ -40,6 +40,13 @@ env:
   ftp_ip: ${{ secrets.FTP_IP }}
   TargetPath: OpenwrtImgs/mt7981/360T7_108M_24.10
   TargetPath2: OpenwrtImgs/mt7981/RAX3000M_NAND
+  upload_file_1: immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-initramfs-kernel.bin
+  upload_file_2: immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-factory.bin
+  upload_file_3: immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-sysupgrade.bin
+  upload_file_4: immortalwrt-mediatek-mt7981-cmcc_rax3000m-initramfs-kernel.bin
+  upload_file_5: immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin
+  upload_file_6: immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-sysupgrade.bin
+  upload_file_7: sha256sums
   whkey: ${{ secrets.WEBHOOK }}
 
 jobs:
@@ -192,8 +199,10 @@ jobs:
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
-        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
+        
+        sed -n -r '/^CONFIG_TARGET.*DEVICE.*=y/{s/.*DEVICE_([^_]+_[^_]+)_.*=y/\1/p;q}' .config > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
+        
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
     - name: Check space usage
@@ -226,14 +235,6 @@ jobs:
     - name: Upload firmware to my NAS
       id: zz-nas
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_ZZNAS == 'true' && !cancelled()
-      env:
-        upload_file_1: "immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-initramfs-kernel.bin"
-        upload_file_2: "immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-factory.bin"
-        upload_file_3: "immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-sysupgrade.bin"
-        upload_file_4: "immortalwrt-mediatek-mt7981-cmcc_rax3000m-initramfs-kernel.bin"
-        upload_file_5: "immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin"
-        upload_file_6: "immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-sysupgrade.bin"
-        upload_file_7: "sha256sums"
       run: |
         send_dingding="curl -s \"https://oapi.dingtalk.com/robot/send?access_token=${whkey}\" -H 'Content-Type: application/json' -d '{\"msgtype\": \"markdown\",\"markdown\": {\"title\":"
         send_content1="【${model}】编译成功！正在上传固件到NAS..."
