@@ -25,11 +25,11 @@ env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6
   REPO_BRANCH: 2410
   FEEDS_CONF: feeds.conf.default
-  model: "360T7_108M-padavanonly"
-  model2: "cmcc_rax3000m-padavanonly"
-  CONFIG_FILE: "MakeMenu.mt7981.24.10.config"
-  DIY_P1_SH: "diy-x86-part1.sh"
-  DIY_P2_SH: "diy-24.10-part2.sh"
+  model: 360T7_108M_2410
+  model2: cmcc_rax3000m_2410
+  CONFIG_FILE: MakeMenu.mt7981.24.10.config
+  DIY_P1_SH: diy-x86-part1.sh
+  DIY_P2_SH: diy-24.10-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -38,15 +38,8 @@ env:
   ftp_username: ${{ secrets.FTP_USERNAME }}
   ftp_psw: ${{ secrets.FTP_PSW }}
   ftp_ip: ${{ secrets.FTP_IP }}
-  TargetPath: "OpenwrtImgs/mt7981/360T7_108M_24.10"
-  TargetPath2: "OpenwrtImgs/mt7981/RAX3000M_NAND"
-  upload_file_1: "immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-initramfs-kernel.bin"
-  upload_file_2: "immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-factory.bin"
-  upload_file_3: "immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-sysupgrade.bin"
-  upload_file_4: "immortalwrt-mediatek-mt7981-cmcc_rax3000m-initramfs-kernel.bin"
-  upload_file_5: "immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin"
-  upload_file_6: "immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-sysupgrade.bin"
-  upload_file_7: "sha256sums"
+  TargetPath: OpenwrtImgs/mt7981/360T7_108M_24.10
+  TargetPath2: OpenwrtImgs/mt7981/RAX3000M_NAND
   whkey: ${{ secrets.WEBHOOK }}
 
 jobs:
@@ -233,6 +226,14 @@ jobs:
     - name: Upload firmware to my NAS
       id: zz-nas
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_ZZNAS == 'true' && !cancelled()
+      env:
+        upload_file_1: "immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-initramfs-kernel.bin"
+        upload_file_2: "immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-factory.bin"
+        upload_file_3: "immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-sysupgrade.bin"
+        upload_file_4: "immortalwrt-mediatek-mt7981-cmcc_rax3000m-initramfs-kernel.bin"
+        upload_file_5: "immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin"
+        upload_file_6: "immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-sysupgrade.bin"
+        upload_file_7: "sha256sums"
       run: |
         send_dingding="curl -s \"https://oapi.dingtalk.com/robot/send?access_token=${whkey}\" -H 'Content-Type: application/json' -d '{\"msgtype\": \"markdown\",\"markdown\": {\"title\":"
         send_content1="【${model}】编译成功！正在上传固件到NAS..."
