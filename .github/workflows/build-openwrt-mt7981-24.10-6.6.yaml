@@ -25,11 +25,11 @@ env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6
   REPO_BRANCH: openwrt-24.10-6.6
   FEEDS_CONF: feeds.conf.default
-  model: "360T7_6.6"
-  model2: "cmcc_rax3000m_6.6"
-  CONFIG_FILE: "MakeMenu.mt7981.24.10.6.6.config"
-  DIY_P1_SH: "diy-x86-part1.sh"
-  DIY_P2_SH: "diy-24.10-part2.sh"
+  model: 360T7_6.6
+  model2: cmcc_rax3000m_6.6
+  CONFIG_FILE: MakeMenu.mt7981.24.10.6.6.config
+  DIY_P1_SH: diy-x86-part1.sh
+  DIY_P2_SH: diy-24.10-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -38,13 +38,13 @@ env:
   ftp_username: ${{ secrets.FTP_USERNAME }}
   ftp_psw: ${{ secrets.FTP_PSW }}
   ftp_ip: ${{ secrets.FTP_IP }}
-  TargetPath: "OpenwrtImgs/mt7981/360T7_108M_24.10_6.6"
-  TargetPath2: "OpenwrtImgs/mt7981/RAX3000M_NAND_6.6"
-  upload_file_1: "immortalwrt-mediatek-filogic-qihoo_360t7-initramfs-kernel.bin"
-  upload_file_2: "immortalwrt-mediatek-filogic-qihoo_360t7-squashfs-sysupgrade.bin"
-  upload_file_3: "immortalwrt-mediatek-filogic-cmcc_rax3000m-initramfs-recovery.itb"
-  upload_file_4: "immortalwrt-mediatek-filogic-cmcc_rax3000m-squashfs-sysupgrade.itb"
-  upload_file_5: "sha256sums"
+  TargetPath: OpenwrtImgs/mt7981/360T7_108M_24.10_6.6
+  TargetPath2: OpenwrtImgs/mt7981/RAX3000M_NAND_6.6
+  upload_file_1: immortalwrt-mediatek-filogic-qihoo_360t7-initramfs-kernel.bin
+  upload_file_2: immortalwrt-mediatek-filogic-qihoo_360t7-squashfs-sysupgrade.bin
+  upload_file_3: immortalwrt-mediatek-filogic-cmcc_rax3000m-initramfs-recovery.itb
+  upload_file_4: immortalwrt-mediatek-filogic-cmcc_rax3000m-squashfs-sysupgrade.itb
+  upload_file_5: sha256sums
   whkey: ${{ secrets.WEBHOOK }}
 
 jobs:
