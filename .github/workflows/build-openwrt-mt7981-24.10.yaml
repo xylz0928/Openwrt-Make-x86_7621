@@ -40,15 +40,15 @@ env:
   ftp_username: ${{ secrets.FTP_USERNAME }}
   ftp_psw: ${{ secrets.FTP_PSW }}
   ftp_ip: ${{ secrets.FTP_IP }}
-  TargetPath: OpenwrtImgs/mt7981/360T7_108M-24.10
-  TargetPath2: OpenwrtImgs/mt7981/RAX3000M-NAND
-  upload_file_1: immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-initramfs-kernel.bin
-  upload_file_2: immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-factory.bin
-  upload_file_3: immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-sysupgrade.bin
-  upload_file_4: immortalwrt-mediatek-mt7981-cmcc_rax3000m-initramfs-kernel.bin
-  upload_file_5: immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin
-  upload_file_6: immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-sysupgrade.bin
-  upload_file_7: sha256sums
+  TargetPath: OpenwrtImgs/mt7981/360T7_108M_24.10
+  TargetPath2: OpenwrtImgs/mt7981/RAX3000M_NAND
+  upload_file_1: "immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-initramfs-kernel.bin"
+  upload_file_2: "immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-factory.bin"
+  upload_file_3: "immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-sysupgrade.bin"
+  upload_file_4: "immortalwrt-mediatek-mt7981-cmcc_rax3000m-initramfs-kernel.bin"
+  upload_file_5: "immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin"
+  upload_file_6: "immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-sysupgrade.bin"
+  upload_file_7: "sha256sums"
   whkey: ${{ secrets.WEBHOOK }}
 
 jobs:
