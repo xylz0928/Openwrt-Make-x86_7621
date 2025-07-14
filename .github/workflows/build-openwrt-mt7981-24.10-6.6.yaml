@@ -25,30 +25,26 @@ env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6
   REPO_BRANCH: openwrt-24.10-6.6
   FEEDS_CONF: feeds.conf.default
-  model: 360T7_108M-padavanonly
-  model2: cmcc_rax3000m-padavanonly
-  CONFIG_FILE: MakeMenu.mt7981.24.10.6.6.config
-  DIY_P1_SH: diy-x86-part1.sh
-  DIY_P2_SH: diy-24.10-part2.sh
+  model: "360T7_6.6"
+  model2: "cmcc_rax3000m_6.6"
+  CONFIG_FILE: "MakeMenu.mt7981.24.10.6.6.config"
+  DIY_P1_SH: "diy-x86-part1.sh"
+  DIY_P2_SH: "diy-24.10-part2.sh"
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
-  UPLOAD_COWTRANSFER: false
-  UPLOAD_WETRANSFER: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
   UPLOAD_ZZNAS: true
   ftp_username: ${{ secrets.FTP_USERNAME }}
   ftp_psw: ${{ secrets.FTP_PSW }}
   ftp_ip: ${{ secrets.FTP_IP }}
-  TargetPath: OpenwrtImgs/mt7981/360T7_108M-24.10-6.6
-  TargetPath2: OpenwrtImgs/mt7981/RAX3000M-NAND-6.6
-  upload_file_1: immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-initramfs-kernel.bin
-  upload_file_2: immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-factory.bin
-  upload_file_3: immortalwrt-mediatek-mt7981-mt7981-360-t7-108M-squashfs-sysupgrade.bin
-  upload_file_4: immortalwrt-mediatek-mt7981-cmcc_rax3000m-initramfs-kernel.bin
-  upload_file_5: immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-factory.bin
-  upload_file_6: immortalwrt-mediatek-mt7981-cmcc_rax3000m-squashfs-sysupgrade.bin
-  upload_file_7: sha256sums
+  TargetPath: "OpenwrtImgs/mt7981/360T7_108M_24.10_6.6"
+  TargetPath2: "OpenwrtImgs/mt7981/RAX3000M_NAND_6.6"
+  upload_file_1: "immortalwrt-mediatek-filogic-qihoo_360t7-initramfs-kernel.bin"
+  upload_file_2: "immortalwrt-mediatek-filogic-qihoo_360t7-squashfs-sysupgrade.bin"
+  upload_file_3: "immortalwrt-mediatek-filogic-cmcc_rax3000m-initramfs-recovery.itb"
+  upload_file_4: "immortalwrt-mediatek-filogic-cmcc_rax3000m-squashfs-sysupgrade.itb"
+  upload_file_5: "sha256sums"
   whkey: ${{ secrets.WEBHOOK }}
 
 jobs:
@@ -232,24 +228,6 @@ jobs:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
-    - name: Upload firmware to cowtransfer
-      id: cowtransfer
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
-      run: |
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
-        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-        echo "url=$(cat cowtransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_OUTPUT
-
-    - name: Upload firmware to WeTransfer
-      id: wetransfer
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
-      run: |
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
-        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
-        echo "url=$(cat wetransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_OUTPUT
-
     - name: Upload firmware to my NAS
       id: zz-nas
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_ZZNAS == 'true' && !cancelled()
@@ -266,11 +244,11 @@ jobs:
         
         cd openwrt/bin/targets/*/*
         echo $ftp_psw > /tmp/rsync.psw && chmod 600 /tmp/rsync.psw
-        rsync -avrzP $upload_file_1 $upload_file_2 $upload_file_3 $upload_file_7 $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
+        rsync -avrzP $upload_file_1 $upload_file_2 $upload_file_5 $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
         eval "$send_dingding \"${send_content2}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content2}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
 
         eval "$send_dingding \"${send_content3}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#6A65FF>${send_content3}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
-        rsync -avrzP $upload_file_4 $upload_file_5 $upload_file_6 $upload_file_7 $ftp_username@$ftp_ip::$TargetPath2/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
+        rsync -avrzP $upload_file_3 $upload_file_4 $upload_file_5 $ftp_username@$ftp_ip::$TargetPath2/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
         eval "$send_dingding \"${send_content4}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content4}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
 
         echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
@@ -282,8 +260,6 @@ jobs:
       run: |
         echo "release_tag=$model-and-$model2-$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
         touch release.txt
-        [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
-        [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload firmware to release
