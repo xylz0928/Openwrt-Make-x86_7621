@@ -237,10 +237,8 @@ jobs:
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_ZZNAS == 'true' && !cancelled()
       run: |
         send_dingding="curl -s \"https://oapi.dingtalk.com/robot/send?access_token=${whkey}\" -H 'Content-Type: application/json' -d '{\"msgtype\": \"markdown\",\"markdown\": {\"title\":"
-        send_content1="【${model}】编译成功！正在上传固件到NAS..."
-        send_content2="【${model}】编译成功！固件成功上传到NAS。"
-        send_content3="【${model2}】编译成功！正在上传固件到NAS..."
-        send_content4="【${model2}】编译成功！固件成功上传到NAS。"
+        send_content1="【${model}】【${model2}】编译成功！正在上传固件到NAS..."
+        send_content2="【${model}】【${model2}】编译成功！固件成功上传到NAS。"
         markdown_splitline="\n\n---\n\n"
         GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
@@ -248,13 +246,77 @@ jobs:
         
         cd openwrt/bin/targets/*/*
         echo $ftp_psw > /tmp/rsync.psw && chmod 600 /tmp/rsync.psw
-        rsync -avrzP $upload_file_1 $upload_file_2 $upload_file_3 $upload_file_7 $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
+
+        transfer_with_retry() {
+          local file="$1"
+          local target="$2"
+          local retries=3
+          local attempt=1
+              
+          if [[ -z "$file" ]]; then
+            echo "⚠️  Skipping empty file parameter"
+            return 0
+          fi
+              
+          if ! ls $file >/dev/null 2>&1; then
+            echo "⚠️  File(s) matching '$file' not found, skipping"
+            return 0
+          fi
+              
+          while true; do
+            echo "🚀 Attempt $attempt: Transferring $file to $target"
+            if rsync -avzP --partial "$file" "$target" --password-file=/tmp/rsync.psw; then
+              echo "✅ Successfully transferred $file"
+              return 0
+            fi
+                  
+            if [[ $attempt -ge $retries ]]; then
+              echo "❌ Critical failure: $file failed after $retries attempts"
+              return 1
+            fi
+                  
+            echo "⚠️  Failed attempt $attempt for $file. Retrying in 5 seconds..."
+            sleep 5
+            ((attempt++))
+          done
+        }
+          
+        transfer_group() {
+          local target="$1"
+          shift
+          local files=("$@")
+          local error_occurred=0
+              
+          echo "===================== Transferring to $target ====================="
+              
+          for file in "${files[@]}"; do
+            if ! transfer_with_retry "$file" "$target"; then
+              error_occurred=1
+              echo "❌ File $file failed, skipping but continuing with others"
+            fi
+          done
+              
+          return $error_occurred
+        }
+          
+        timestamp=$(date +"%Y.%m.%d-%H%M")
+        target1="$ftp_username@$ftp_ip::$TargetPath/$timestamp/"
+        target2="$ftp_username@$ftp_ip::$TargetPath2/$timestamp/"
+          
+        group1=("$UPLOAD_FILE_1" "$UPLOAD_FILE_2" "$UPLOAD_FILE_3" "$UPLOAD_FILE_7")
+        group2=("$UPLOAD_FILE_4" "$UPLOAD_FILE_5" "$UPLOAD_FILE_6" "$UPLOAD_FILE_7")
+          
+        transfer_group "$target1" "${group1[@]}" || {
+          echo "⚠️  One or more files in group 1 failed"
+        }
+          
+        transfer_group "$target2" "${group2[@]}" || {
+          echo "⚠️  One or more files in group 2 failed"
+        }
+          
+        rm -f /tmp/rsync.psw
+        echo "===================== Transfer Completed ====================="
         eval "$send_dingding \"${send_content2}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content2}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
-
-        eval "$send_dingding \"${send_content3}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#6A65FF>${send_content3}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
-        rsync -avrzP $upload_file_4 $upload_file_5 $upload_file_6 $upload_file_7 $ftp_username@$ftp_ip::$TargetPath2/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
-        eval "$send_dingding \"${send_content4}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content4}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
-
         echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
 
