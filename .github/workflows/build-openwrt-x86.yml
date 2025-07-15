@@ -321,7 +321,7 @@ jobs:
         timestamp=$(date +"%Y.%m.%d-%H%M")
         target1="$ftp_username@$ftp_ip::$TargetPath/$timestamp/"
           
-        group1=("$upload_file_1" "$upload_file_2" "upload_file_3")
+        group1=("$upload_file_1" "$upload_file_2" "$upload_file_3")
          
         transfer_group "$target1" "${group1[@]}" || {
           echo "⚠️  One or more files in group 1 failed"
