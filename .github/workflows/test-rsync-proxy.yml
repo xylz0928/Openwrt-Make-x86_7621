@@ -90,12 +90,12 @@ jobs:
         
         cd /tmp
         wget -nc -O test1.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
-        wget -nc -O test2.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
-        wget -nc -O test3.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
-        wget -nc -O test4.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
-        wget -nc -O test5.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
-        wget -nc -O test6.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
-        wget -nc -O test7.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
+        cp test1.file test2.file
+        cp test1.file test3.file
+        cp test1.file test4.file
+        cp test1.file test5.file
+        cp test1.file test6.file
+        cp test1.file test7.file
         UPLOAD_FILE_1="test1.file"
         UPLOAD_FILE_2="test2.file"
         UPLOAD_FILE_3="test3.file"
