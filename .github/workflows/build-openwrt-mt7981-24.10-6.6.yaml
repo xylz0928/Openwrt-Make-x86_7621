@@ -312,8 +312,9 @@ jobs:
           
         rm -f /tmp/rsync.psw
         echo "===================== Transfer Completed ====================="
-        eval "$send_dingding \"${send_content2}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content2}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
+        eval "$send_dingding \"${send_content2}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#92D050>${send_content2}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
+        echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
 
     - name: Generate release tag
       id: tag
