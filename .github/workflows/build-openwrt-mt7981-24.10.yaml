@@ -300,8 +300,8 @@ jobs:
         }
           
         timestamp=$(date +"%Y.%m.%d-%H%M")
-        target1="$ftp_username@$ftp_ip::$TargetPath/Test_$timestamp/"
-        target2="$ftp_username@$ftp_ip::$TargetPath2/Test_$timestamp/"
+        target1="$ftp_username@$ftp_ip::$TargetPath/$timestamp/"
+        target2="$ftp_username@$ftp_ip::$TargetPath2/$timestamp/"
           
         group1=("$upload_file_1" "$upload_file_2" "$upload_file_3" "$upload_file_7")
         group2=("$upload_file_4" "$upload_file_5" "$upload_file_6" "$upload_file_7")
