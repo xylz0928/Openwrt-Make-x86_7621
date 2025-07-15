@@ -25,7 +25,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  model: K2P
+  model: 360T7_108M_2410
+  model2: cmcc_rax3000m_2410
   CONFIG_FILE: MakeMenu.K2P.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
@@ -39,7 +40,8 @@ env:
   ftp_username: ${{ secrets.FTP_USERNAME }}
   ftp_psw: ${{ secrets.FTP_PSW }}
   ftp_ip: ${{ secrets.FTP_IP }}
-  TargetPath: OpenwrtImgs/mt7621/K2P
+  TargetPath: OpenwrtImgs/mt7981/360T7_108M_24.10
+  TargetPath2: OpenwrtImgs/mt7981/RAX3000M_NAND
   whkey: ${{ secrets.WEBHOOK }}
 
 jobs:
@@ -87,9 +89,93 @@ jobs:
         eval "$send_dingding \"${send_content1}\",\"text\":\"${nowtime} $markdown_splitline #### <font color=#6A65FF>${send_content1}</font>\n\n[点此链接查看](${GITHUB_WORKFLOW_URL})\"}}'"
         
         cd /tmp
-        wget https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
+        wget -nc -O test1.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
+        wget -nc -O test2.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
+        wget -nc -O test3.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
+        wget -nc -O test4.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
+        wget -nc -O test5.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
+        wget -nc -O test6.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
+        wget -nc -O test7.file https://github.com/xylz0928/Openwrt-Make/raw/refs/heads/main/test.file
+        UPLOAD_FILE_1="test1.file"
+        UPLOAD_FILE_2="test2.file"
+        UPLOAD_FILE_3="test3.file"
+        UPLOAD_FILE_4="test4.file"
+        UPLOAD_FILE_5="test5.file"
+        UPLOAD_FILE_6="test6.file"
+        UPLOAD_FILE_7="test7.file"
+        
         echo $ftp_psw > /tmp/rsync.psw && chmod 600 /tmp/rsync.psw
-        rsync -avrzP test.file $ftp_username@$ftp_ip::$TargetPath/$(date +"%Y.%m.%d-%H%M")/ --password-file=/tmp/rsync.psw
+
+        transfer_with_retry() {
+          local file="$1"
+          local target="$2"
+          local retries=3
+          local attempt=1
+              
+          if [[ -z "$file" ]]; then
+            echo "⚠️  Skipping empty file parameter"
+            return 0
+          fi
+              
+          if ! ls $file >/dev/null 2>&1; then
+            echo "⚠️  File(s) matching '$file' not found, skipping"
+            return 0
+          fi
+              
+          while true; do
+            echo "🚀 Attempt $attempt: Transferring $file to $target"
+            if rsync -avzP --partial "$file" "$target" --password-file=/tmp/rsync.psw; then
+              echo "✅ Successfully transferred $file"
+              return 0
+            fi
+                  
+            if [[ $attempt -ge $retries ]]; then
+              echo "❌ Critical failure: $file failed after $retries attempts"
+              return 1
+            fi
+                  
+            echo "⚠️  Failed attempt $attempt for $file. Retrying in 5 seconds..."
+            sleep 5
+            ((attempt++))
+          done
+        }
+          
+        transfer_group() {
+          local target="$1"
+          shift
+          local files=("$@")
+          local error_occurred=0
+              
+          echo "===================== Transferring to $target ====================="
+              
+          for file in "${files[@]}"; do
+            if ! transfer_with_retry "$file" "$target"; then
+              error_occurred=1
+              echo "❌ File $file failed, skipping but continuing with others"
+            fi
+          done
+              
+          return $error_occurred
+        }
+          
+        timestamp=$(date +"%Y.%m.%d-%H%M")
+        target1="$ftp_username$ftp_ip::$TARGET_PATH/$timestamp/"
+        target2="$ftp_username@$ftp_ip::$TARGET_PATH2/$timestamp/"
+          
+        group1=("$UPLOAD_FILE_1" "$UPLOAD_FILE_2" "$UPLOAD_FILE_3" "$UPLOAD_FILE_7")
+        group2=("$UPLOAD_FILE_4" "$UPLOAD_FILE_5" "$UPLOAD_FILE_6" "$UPLOAD_FILE_7")
+          
+        transfer_group "$target1" "${group1[@]}" || {
+          echo "⚠️  One or more files in group 1 failed"
+        }
+          
+        transfer_group "$target2" "${group2[@]}" || {
+          echo "⚠️  One or more files in group 2 failed"
+        }
+          
+        rm -f /tmp/rsync.psw
+        echo "===================== Transfer Completed ====================="
+        
         echo "::warning file=zz-nas.com::All Released Files Uploaded to ZZ-NAS"
         
         nowtime=`date "+%Y-%m-%d %H:%M:%S"`
