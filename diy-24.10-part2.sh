@@ -268,7 +268,7 @@ git clone https://github.com/chenmozhijin/luci-app-socat package/luci-app-socat
 git clone https://github.com/sirpdboy/luci-app-advanced package/luci-app-advanced
 
 # Add Lucky
-git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
+git clone https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
 
 # Add SmartDNS
 # rm -rf ./feeds/packages/net/smartdns
